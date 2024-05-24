@@ -10,14 +10,14 @@ import com.cube.cubetravel.manager.DatabaseManager
 
 /** MainViewModel  專用的 Factory */
 
+@Suppress("UNCHECKED_CAST")
 class MainViewModelFactory(private val application: Application): ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
-            val newsDao = DatabaseManager.getDatabase(application).newsDao()
-            val newsCollectionDao = DatabaseManager.getDatabase(application).newsCollectionDao()
+            val attractionsCollectionDao = DatabaseManager.getDatabase(application).attractionsCollectionDao()
 
-            val repository = MainRepository(newsDao,newsCollectionDao)
+            val repository = MainRepository(attractionsCollectionDao)
             return MainViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

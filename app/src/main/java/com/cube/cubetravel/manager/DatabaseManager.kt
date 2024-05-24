@@ -2,6 +2,7 @@ package com.cube.cubetravel.manager
 
 import android.content.Context
 import androidx.room.Room
+import com.cube.cubetravel.sql.database.AppDatabase
 
 object DatabaseManager {
 
@@ -11,7 +12,7 @@ object DatabaseManager {
         return INSTANCE ?: synchronized(this){
             val instance = Room.databaseBuilder(context.applicationContext,
                 AppDatabase::class.java,
-                "newsaiDatabase.db")
+                "CubeTravelDatabase.db")
                 .fallbackToDestructiveMigration()
                 .build()
             INSTANCE = instance
