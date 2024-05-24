@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.cube.cubetravel.feature.main.viewmodel.MainViewModel" />
+    </data>
+    <!-- Fragment 內容 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- SwipeRefreshLayout -->
+        <com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onRefreshed="@{viewmodel.mOnNewsListRefreshListener}">
+            <!-- 景點列表用 RecyclerView -->
+            <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

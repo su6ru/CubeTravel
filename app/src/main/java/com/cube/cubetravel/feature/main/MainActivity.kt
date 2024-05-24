@@ -18,7 +18,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.Jsoup
 import java.io.IOException
-
+/** 首頁 */
 class MainActivity : CubeTravelActivity<Void>() {
     // MARK:- ========================== Define
     companion object {
@@ -44,13 +44,17 @@ class MainActivity : CubeTravelActivity<Void>() {
 
 
         //====================== Observe
+        //onAttractionsClickObserve
+        mMainViewModel.mAttractionsClickLiveData.observe(this) { value ->
+            onAttractionsClickObserve(value)
+        }
         //onNewsClickObserve
         mMainViewModel.mNewsClickLiveData.observe(this) { value ->
             onNewsClickObserve(value)
         }
-        //onCollectionClickObserve
-        mMainViewModel.mCollectionClickLiveData.observe(this) { value ->
-            onCollectionClickObserve(value)
+        //onAttractionsCollectionClickObserve
+        mMainViewModel.mAttractionsCollectionClickLiveData.observe(this) { value ->
+            onAttractionsCollectionClickObserve(value)
         }
         //====================== Init
         //預設顯示 AttractionsListFragment
@@ -96,7 +100,7 @@ class MainActivity : CubeTravelActivity<Void>() {
 
     }
     /** 觀察當前是否 點擊 最新消息 */
-    private fun onCollectionClickObserve(boolean: Boolean) {
+    private fun onNewsClickObserve(boolean: Boolean) {
         if (boolean) {
             CIFragmentUtil
                 .switchFragment(this

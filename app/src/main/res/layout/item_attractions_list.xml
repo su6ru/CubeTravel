@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.cube.cubetravel.feature.main.viewmodel.MainViewModel" />
+        <variable
+            name="attractionsBean"
+            type="com.cube.cubetravel.data.beans.AttractionsBean" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/transparent">
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
