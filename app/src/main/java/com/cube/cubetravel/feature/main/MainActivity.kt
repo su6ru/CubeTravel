@@ -2,11 +2,125 @@ package com.cube.cubetravel.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import com.ci.v1_ci_view.ui.util.CIFragmentUtil
 import com.cube.cubetravel.R
+import com.cube.cubetravel.custom.activity.CubeTravelActivity
+import com.cube.cubetravel.custom.viewmodel.BaseViewModel
+import com.cube.cubetravel.data.factory.MainViewModelFactory
+import com.cube.cubetravel.databinding.ActivityMainBinding
+import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import org.jsoup.Jsoup
+import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CubeTravelActivity<Void>() {
+    // MARK:- ========================== Define
+    companion object {
+        const val FRAGMENT_ATTRACTIONS_LIST = "FRAGMENT_ATTRACTIONS_LIST"
+
+        const val FRAGMENT_NEWS_LIST = "FRAGMENT_NEWS_LIST"
+
+        const val FRAGMENT_ATTRACTIONS_COLLECTION_LIST = "FRAGMENT_ATTRACTIONS_COLLECTION_LIST"
+
+    }
+
+    override fun mBaseViewModel(): BaseViewModel {
+        return mMainViewModel
+    }
+    // MARK:- ========================== Life
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //====================== DataBinding
+        setContentView(mActivityMainBinding.root)
+        mActivityMainBinding.viewmodel = mMainViewModel
+        mActivityMainBinding.lifecycleOwner = this
+        lifecycle.addObserver(mMainViewModel)
+
+
+        //====================== Observe
+        //onNewsClickObserve
+        mMainViewModel.mNewsClickLiveData.observe(this) { value ->
+            onNewsClickObserve(value)
+        }
+        //onCollectionClickObserve
+        mMainViewModel.mCollectionClickLiveData.observe(this) { value ->
+            onCollectionClickObserve(value)
+        }
+        //====================== Init
+        //預設顯示 AttractionsListFragment
+        CIFragmentUtil
+            .switchFragment(this
+                ,R.id.fragment
+                ,mAttractionsListFragment
+                ,FRAGMENT_ATTRACTIONS_LIST)
     }
+
+    // MARK:- ========================== View
+    /** 景點 列表 Fragment */
+    val mAttractionsListFragment by lazy {
+        AttractionsListFragment()
+    }
+    /** 最新消息 列表 Fragment */
+    val mNewsListFragment by lazy {
+        NewsListFragment()
+    }
+    /** 景點收藏 列表 Fragment */
+    val mAttractionsCollectionListFragment by lazy {
+        AttractionsCollectionListFragment()
+    }
+    // MARK:- ========================== Data
+    /** Data Binding */
+    private val mActivityMainBinding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+    /** ViewModel */
+    val mMainViewModel: MainViewModel by lazy {
+        ViewModelProvider(this, MainViewModelFactory(application))[MainViewModel::class.java]
+    }
+    // MARK:- ========================== Observe
+    /** 觀察當前是否 點擊 景點 */
+    private fun onAttractionsClickObserve(boolean: Boolean) {
+        if (boolean) {
+            CIFragmentUtil
+                .switchFragment(this
+                    ,R.id.fragment
+                    ,mAttractionsListFragment
+                    ,FRAGMENT_ATTRACTIONS_LIST)
+        }
+
+    }
+    /** 觀察當前是否 點擊 最新消息 */
+    private fun onCollectionClickObserve(boolean: Boolean) {
+        if (boolean) {
+            CIFragmentUtil
+                .switchFragment(this
+                    ,R.id.fragment
+                    ,mNewsListFragment
+                    , FRAGMENT_NEWS_LIST)
+        }
+    }
+    /** 觀察當前是否 點擊 景點收藏 */
+    private fun onAttractionsCollectionClickObserve(boolean: Boolean) {
+        if (boolean) {
+            CIFragmentUtil
+                .switchFragment(this
+                    ,R.id.fragment
+                    ,mAttractionsCollectionListFragment
+                    , FRAGMENT_ATTRACTIONS_COLLECTION_LIST)
+        }
+    }
+    // MARK:- ========================== Method
+
+
+
+
+
+
+
 }
