@@ -1,13 +1,14 @@
 package com.cube.cubetravel.data.network.call
 
 import com.ci.v1_ci_view.ui.listener.IOnOptionListener
+import com.cube.cubetravel.data.network.data.BaseApiData
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
- /** 新聞列表 爬蟲所用的 ApiCall */
-class TravelApiCall<T>(
+ /** 景點列表  ApiCall */
+class TravelApiCall<T: BaseApiData.Response<*>>(
     private val successListener: IOnOptionListener<T>,
     private val failListener: IOnOptionListener<String>,
     private val completeListener: IOnOptionListener<Void>): Callback<T> {

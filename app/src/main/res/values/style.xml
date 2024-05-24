@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainBottomTabStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_select_main_tab</item>
+        <item name="android:textSize">@dimen/dimens_big</item>
+        <item name="android:button">@null</item>
+    </style>
+
+
+</resources>
