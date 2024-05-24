@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 若未使用此,則 開啟google map的 Intent.resolveActivity(activity.getPackageManager()) 必為null  -->
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+    <!-- 若未使用此,則 開啟mail的 Intent.resolveActivity(activity.getPackageManager()) 必為null  -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
+    <!-- 若未使用此,則 電話撥打的 Intent.resolveActivity(activity.getPackageManager()) 必為null  -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+    </queries>
+    <!-- 指定查詢網絡瀏覽器應用 -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+</manifest>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--CIToolbar-->
+    <attr name="v1_ci_view" format="reference"/>
+    <declare-styleable name="CIToolbar">
+        <!--背景色-->
+        <attr name="android:background"/>
+        <!--標題-->
+        <attr name="title_text" format="string"/>
+        <!--標題顏色-->
+        <attr name="title_text_color" format="color" />
+        <!--是否顯示底線-->
+        <attr name="showLine" format="boolean"/>
+        <!--是否顯示左邊圖示-->
+        <attr name="showLeftImage" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="CITextView">
+        <attr name="drawable_height" format="float"/>
+        <attr name="drawable_width" format="float"/>
+    </declare-styleable>
+
+
+</resources>
