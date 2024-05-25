@@ -1,32 +1,17 @@
 package com.cube.cubetravel.feature.attractions
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.ci.v1_ci_view.ui.util.CIFragmentUtil
 import com.ci.v1_ci_view.ui.view.activity.CIActivity
-import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.AttractionsBean
-import com.cube.cubetravel.data.beans.NewsBean
+import com.cube.cubetravel.data.beans.ImageBannerBean
 import com.cube.cubetravel.data.factory.AttractionsContentViewModelFactory
-import com.cube.cubetravel.data.factory.MainViewModelFactory
-import com.cube.cubetravel.data.factory.NewsContentViewModelFactory
 import com.cube.cubetravel.databinding.ActivityAttractionsContentBinding
-import com.cube.cubetravel.databinding.ActivityMainBinding
-import com.cube.cubetravel.databinding.ActivityNewsContentBinding
 import com.cube.cubetravel.feature.attractions.viewmodel.AttractionsContentViewModel
-import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
-import com.cube.cubetravel.feature.news.viewmodel.NewsContentViewModel
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import org.jsoup.Jsoup
-import java.io.IOException
+
 /** 景點內頁 */
 class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
     // MARK:- ========================== Define
@@ -51,6 +36,10 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
 
 
         //====================== Observe
+        //onImageBannerBeanListChanged
+        mAttractionsContentViewModel.mImageBannerBeanListLiveData.observe(this) { value ->
+            onImageBannerBeanListChanged(value)
+        }
 
         //====================== Init
     }
@@ -67,7 +56,17 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
         ViewModelProvider(this, AttractionsContentViewModelFactory(getIntentData(AttractionsBean::class.java)))[AttractionsContentViewModel::class.java]
     }
     // MARK:- ========================== Observe
+    /** 圖片 Banner資料變動觀察,如果有變動就更新view  */
+    fun onImageBannerBeanListChanged(bannerBeans: List<ImageBannerBean>) {
+        if (bannerBeans.isEmpty()){
+            mActivityAttractionsContentBinding.bannerImage.visibility = View.GONE
+        }else{
+            mActivityAttractionsContentBinding.bannerImage.visibility = View.VISIBLE
 
+            mActivityAttractionsContentBinding.bannerImage.submitList(bannerBeans)
+
+        }
+    }
     // MARK:- ========================== Method
 
 

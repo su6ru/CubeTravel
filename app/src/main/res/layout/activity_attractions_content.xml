@@ -59,6 +59,12 @@
                         android:layout_height="wrap_content"
                         android:text="@={viewmodel.mAttractionsBeanLiveData.name}"
                         tools:text="標題"/>
+                    <!--圖片 Banner-->
+                    <com.ci.v1_ci_view.ui.view.banner.CIMultipleImageBanner
+                        android:id="@+id/banner_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
                     <!-- 內容 -->
                     <com.ci.v1_ci_view.ui.view.textview.CITextView
                         style="@style/AttractionsContentNormalTextStyle"
