@@ -15,20 +15,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/transparent">
-        <!-- 住址 -->
-        <com.ci.v1_ci_view.ui.view.textview.CITextView
+        android:background="@drawable/bg_listview_layout">
+        <!-- 地點名稱 與 收藏 區塊-->
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{attractionsBean.address}"
-            tools:text="新北市"/>
-        <!--收藏-->
-        <com.ci.v1_ci_view.ui.view.checkbox.CICheckBox
-            style="@style/CollectionCheckboxStyle"
-            android:id="@+id/checkbox_collection"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="@string/n_collection"
-            android:checked="@{attractionsBean.MIsCollection}"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</layout>
+            android:layout_marginTop="6dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:orientation="horizontal">
+            <!-- 地點名稱 -->
+            <com.ci.v1_ci_view.ui.view.textview.CITextView
+                style="@style/ItemAttractionsTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@={attractionsBean.name}"
+                tools:text="陽明山"/>
+            <!--收藏-->
+            <com.ci.v1_ci_view.ui.view.checkbox.CICheckBox
+                style="@style/CollectionCheckboxStyle"
+                android:id="@+id/checkbox_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/n_collection"
+                android:checked="@{attractionsBean.isCollection}"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <!-- 主內容 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:background="@color/transparent">
+            <!-- 圖片 -->
+            <com.ci.v1_ci_view.ui.view.imageview.CIImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:background="@color/transparent"
+                app:setImageUrl="@{attractionsBean.firstImageUrl}" />
+            <!-- 右邊 文字區塊 -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- 地點介紹 -->
+                <com.ci.v1_ci_view.ui.view.textview.CITextView
+                    style="@style/ItemAttractionsTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={attractionsBean.introduction}"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    tools:text="山上"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat></layout>

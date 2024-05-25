@@ -71,17 +71,25 @@ class AttractionsBean {
     var url: String? = null
     /**分類1*/
     @SerializedName("category")
-    var category: MutableList<CategoryBean>? = null
+    var categoryBeanList: MutableList<CategoryBean>? = null
     /**分類2*/
     @SerializedName("target")
-    var target: MutableList<TargetBean>? = null
+    var targetBeanList: MutableList<TargetBean>? = null
     /** 設施服務 */
     @SerializedName("service")
-    var service: MutableList<ServiceBean>? = null
+    var serviceBeanList: MutableList<ServiceBean>? = null
     /** 圖片資料 */
     @SerializedName("images")
-    var images: MutableList<ImagesBean>? = null
+    var imagesBeanList: MutableList<ImagesBean>? = null
 
-    //是否收藏
-    var mIsCollection = false
+
+
+
+
+    /** 是否收藏 */
+    var isCollection = false
+    /** 預計顯示的第一張圖片url取得 */
+    var firstImageUrl: String? = null
+        get() = imagesBeanList?.firstOrNull()?.src
+
 }

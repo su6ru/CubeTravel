@@ -34,7 +34,7 @@ class CIResourceUtil {
 
         /** 取得DP  */
         fun getPxByDp(dp: Float): Int {
-            return getPx(TypedValue.COMPLEX_UNIT_DIP, dp).toInt()
+            return (dp * Resources.getSystem().displayMetrics.density).toInt()
         }
 
         /** 取得PX  */

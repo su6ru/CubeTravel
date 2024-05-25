@@ -2,5 +2,7 @@
     <string name="app_name">CubeTravel</string>
     <string name="n_attractions">景點</string>
     <string name="n_news">最新消息</string>
-    <string name="n_collection">景點收藏</string>
+    <string name="n_collection">收藏</string>
+    <string name="n_attractions_collection">景點收藏</string>
+
 </resources>
