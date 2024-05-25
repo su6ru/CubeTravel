@@ -5,5 +5,8 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="white_transparent">#75FFFFFF</color>
+    <color name="blue_transparent">#2894FF</color>
+
+    <color name="orange_light">#FFAD86</color>
 
 </resources>

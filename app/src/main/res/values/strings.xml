@@ -4,5 +4,6 @@
     <string name="n_news">最新消息</string>
     <string name="n_collection">收藏</string>
     <string name="n_attractions_collection">景點收藏</string>
+    <string name="n_go_to">前往</string>
 
 </resources>

@@ -18,6 +18,7 @@ import com.cube.cubetravel.databinding.FragmentNewsListBinding
 import com.cube.cubetravel.feature.main.adapter.NewsListAdapter
 import com.cube.cubetravel.feature.main.diffcallback.NewsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
+import com.cube.cubetravel.feature.news.NewsContentActivity
 
 /** 最新消息 列表 Fragment */
 class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
@@ -87,7 +88,7 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
-
+                NewsContentActivity.startActivity(activity,value)
             }
 
         }

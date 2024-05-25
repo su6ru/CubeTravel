@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.cube.cubetravel.feature.news.viewmodel.NewsContentViewModel" />
+    </data>
+    <!-- 最外層layout -->
+    <FrameLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_morning_sky">
+        <!-- 全內容 layout -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!-- toolbar -->
+                <com.ci.v1_ci_view.ui.view.toolbar.CIToolbar
+                    style="@style/ToolbarStyle"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title_text="@string/n_news"
+                    app:showLeftImage="true"/>
+                <!-- 前往 -->
+                <com.ci.v1_ci_view.ui.view.textview.CITextView
+                    style="@style/ToolbarOpenWebStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/n_go_to"
+                    android:onClick="@{()-> viewmodel.onGoToClick()}"/>
+            </FrameLayout>
+
+            <!-- 內容 區塊 -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="12dp">
+                <!-- 內容 layout -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_listview_layout">
+                    <!-- 標題 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/NewsContentTitleTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewmodel.mNewsBeanLiveData.title}"
+                        tools:text="標題"/>
+                    <!-- 內容 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/NewsContentNormalTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@={viewmodel.mNewsBeanLiveData.description}"
+                        tools:text="內容說明"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </ScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+</layout>
