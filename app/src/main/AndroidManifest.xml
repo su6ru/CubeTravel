@@ -25,6 +25,8 @@
         </activity>
         <activity
             android:name=".feature.news.NewsContentActivity"/>
+        <activity
+            android:name=".feature.attractions.AttractionsContentActivity"/>
     </application>
 
 </manifest>

@@ -20,13 +20,25 @@
         <item name="android:textColor">@color/blue</item>
         <item name="android:textSize">@dimen/dimens_very_very_very_small</item>
     </style>
-    <!-- 最新消息 標題Style -->
+    <!-- 景點詳細內頁 標題Style -->
+    <style name="AttractionsContentTitleTextStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimens_small</item>
+    </style>
+    <!-- 景點詳細內頁 普通內文Style -->
+    <style name="AttractionsContentNormalTextStyle">
+        <item name="android:gravity">start</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimens_very_very_very_small</item>
+    </style>
+    <!-- 最新消息詳細內頁 標題Style -->
     <style name="NewsContentTitleTextStyle">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/dimens_small</item>
     </style>
-    <!-- 最新消息 普通內文Style -->
+    <!-- 最新消息詳細內頁 普通內文Style -->
     <style name="NewsContentNormalTextStyle">
         <item name="android:gravity">start</item>
         <item name="android:textColor">@color/black</item>

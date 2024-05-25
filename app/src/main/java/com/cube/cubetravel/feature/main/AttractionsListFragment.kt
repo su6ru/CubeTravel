@@ -15,6 +15,7 @@ import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.databinding.FragmentAttractionsListBinding
+import com.cube.cubetravel.feature.attractions.AttractionsContentActivity
 import com.cube.cubetravel.feature.main.adapter.AttractionsListAdapter
 import com.cube.cubetravel.feature.main.diffcallback.AttractionsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
@@ -91,7 +92,7 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
-
+                AttractionsContentActivity.startActivity(activity,value)
             }
 
         }
