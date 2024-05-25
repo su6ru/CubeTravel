@@ -22,7 +22,8 @@
             <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                app:onBottomReached="@{viewmodel.mAttractionsListBottomReachedListener}"/>
         </com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout>
 
 

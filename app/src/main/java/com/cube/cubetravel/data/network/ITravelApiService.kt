@@ -1,6 +1,6 @@
 package com.cube.cubetravel.data.network
 
-import com.cube.cubetravel.data.config.URL_TRAVEL
+import com.cube.cubetravel.data.config.CubeTravelConfig
 import com.cube.cubetravel.data.network.drawer.ApiBase
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -33,7 +33,7 @@ interface ITravelApiService {
                     chain.proceed(request)
                 }).build()
             return Retrofit.Builder()
-                .baseUrl(URL_TRAVEL)
+                .baseUrl(CubeTravelConfig.URL_TRAVEL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()
