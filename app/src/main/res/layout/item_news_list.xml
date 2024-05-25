@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.cube.cubetravel.feature.main.viewmodel.MainViewModel" />
+        <variable
+            name="newsBean"
+            type="com.cube.cubetravel.data.beans.NewsBean" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_listview_layout">
+        <!-- 地點名稱 與 收藏 區塊-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:orientation="horizontal">
+            <!-- 地點名稱 -->
+            <com.ci.v1_ci_view.ui.view.textview.CITextView
+                style="@style/ItemAttractionsTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@={newsBean.title}"
+                tools:text="陽明山"/>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <!-- 主內容 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:background="@color/transparent">
+
+            <!-- 右邊 文字區塊 -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- 說明 -->
+                <com.ci.v1_ci_view.ui.view.textview.CITextView
+                    style="@style/ItemAttractionsTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={newsBean.description}"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    tools:text="山上"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat></layout>

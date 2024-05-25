@@ -13,10 +13,10 @@ import com.ci.v1_ci_view.ui.view.fragment.CIFragment
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.application.CubeTravelApplication
-import com.cube.cubetravel.data.beans.AttractionsBean
-import com.cube.cubetravel.databinding.FragmentAttractionsListBinding
-import com.cube.cubetravel.feature.main.adapter.AttractionsListAdapter
-import com.cube.cubetravel.feature.main.diffcallback.AttractionsListDiffCallback
+import com.cube.cubetravel.data.beans.NewsBean
+import com.cube.cubetravel.databinding.FragmentNewsListBinding
+import com.cube.cubetravel.feature.main.adapter.NewsListAdapter
+import com.cube.cubetravel.feature.main.diffcallback.NewsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 
 /** 最新消息 列表 Fragment */
@@ -24,36 +24,35 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
     // MARK:- ========================== Life
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        mAttractionsListFragmentBinding = FragmentAttractionsListBinding.inflate(layoutInflater)
+        mFragmentNewsListBinding = FragmentNewsListBinding.inflate(layoutInflater)
 
-        return mAttractionsListFragmentBinding.root
+        return mFragmentNewsListBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //====================== DataBinding
-        mAttractionsListFragmentBinding.viewmodel = mMainViewModel
-        mAttractionsListFragmentBinding.lifecycleOwner = this
+        mFragmentNewsListBinding.viewmodel = mMainViewModel
+        mFragmentNewsListBinding.lifecycleOwner = this
 
         //====================== recyclerview
-        mAttractionsListFragmentBinding.recyclerview.layoutManager = LinearLayoutManager(
-            CubeTravelApplication.INSTANCE)
-        mAttractionsListAdapter = AttractionsListAdapter(AttractionsListDiffCallback(),mOnListItemClick,mOnCheckedChangeListener)
-        mAttractionsListFragmentBinding.recyclerview.adapter = mAttractionsListAdapter
+        mFragmentNewsListBinding.recyclerview.layoutManager = LinearLayoutManager(CubeTravelApplication.INSTANCE)
+        mNewsListAdapter = NewsListAdapter(NewsListDiffCallback(),mOnListItemClick)
+        mFragmentNewsListBinding.recyclerview.adapter = mNewsListAdapter
 
         //====================== Observe
-        //onAttractionsBeanListObserve
-        mMainViewModel.mAttractionsBeanListLiveData.observe(viewLifecycleOwner,object :
-            Observer<List<AttractionsBean>> {
-            override fun onChanged(value: List<AttractionsBean>) {
-                onAttractionsBeanListObserve(value)
+        //onNewsBeanListObserve
+        mMainViewModel.mNewsBeanListLiveData.observe(viewLifecycleOwner,object :
+            Observer<List<NewsBean>> {
+            override fun onChanged(value: List<NewsBean>) {
+                onNewsBeanListObserve(value)
             }
         })
-        //onAttractionsListItemClickObserve
-        mMainViewModel.mAttractionsListItemClickLiveData.observe(viewLifecycleOwner,object :
-            Observer<AttractionsBean> {
-            override fun onChanged(value: AttractionsBean) {
-                onAttractionsListItemClickObserve(value)
+        //onNewsListItemClickObserve
+        mMainViewModel.mNewsListItemClickLiveData.observe(viewLifecycleOwner,object :
+            Observer<NewsBean> {
+            override fun onChanged(value: NewsBean) {
+                onNewsListItemClickObserve(value)
             }
         })
 
@@ -61,37 +60,30 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
 
     // MARK: - ========================== Data
     /** DataBinding */
-    lateinit var mAttractionsListFragmentBinding: FragmentAttractionsListBinding
+    lateinit var mFragmentNewsListBinding: FragmentNewsListBinding
     /** ViewModel */
     val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
-    /** AttractionsListAdapter */
-    lateinit var mAttractionsListAdapter : AttractionsListAdapter
+    /** NewsListAdapter */
+    lateinit var mNewsListAdapter : NewsListAdapter
     // MARK: - ========================== Event
-    /** 點擊 景點列表 的 任一 itemView */
-    val mOnListItemClick : IOnOptionListener<AttractionsBean> = object :
-        IOnOptionListener<AttractionsBean> {
-        override fun onExecute(option: AttractionsBean?) {
-            mMainViewModel.onAttractionsListItemClick(option!!)
+    /** 點擊 最新消息列表 的 任一 itemView */
+    val mOnListItemClick : IOnOptionListener<NewsBean> = object :
+        IOnOptionListener<NewsBean> {
+        override fun onExecute(option: NewsBean?) {
+            mMainViewModel.onNewsListItemClick(option!!)
         }
 
-    }
-    /** 點擊 景點列表 的 收藏 */
-    val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :
-        IOnOptionCheckedChangedListener<AttractionsBean> {
-        override fun onExecute(option: AttractionsBean, isChecked: Boolean) {
-            mMainViewModel.onAttractionsListCheckedChangeListener(option,isChecked)
-        }
     }
     // MARK:- ========================== Observe
-    /** 觀察 景點列表資料 發生變化 */
-    fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
-        mAttractionsListAdapter.submitList(value)
+    /** 觀察 最新消息列表資料 發生變化 */
+    fun onNewsBeanListObserve(value: List<NewsBean>){
+        mNewsListAdapter.submitList(value)
     }
 
-    /** 觀察 當點擊 景點列表的item */
-    fun onAttractionsListItemClickObserve(value: AttractionsBean){
+    /** 觀察 當點擊 最新消息列表的item */
+    fun onNewsListItemClickObserve(value: NewsBean){
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){

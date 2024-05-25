@@ -18,7 +18,7 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
      * @param elong 經度(可能因後台資料本身不多,所以實測後我認為是多餘的)
      * @param page 當前請求的頁碼,目前30筆資料1頁。
      */
-    fun callGetNewsList(language: String?
+    fun callGetAttractionsList(language: String?
                         , categoryIds: String?
                         , nlat: String?
                         , elong: String?
@@ -30,6 +30,25 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
         ITravelApiService
             .invoke()
             .getAttractionsList(language,categoryIds,nlat,elong,page)
+            .enqueue(TravelApiCall(successListener,failListener,completeListener))
+    }
+    /** 最新消息列表
+     * @param language 語系
+     * @param begin 開始時間，格式 yyyy-MM-dd
+     * @param end 結束時間，格式 yyyy-MM-dd
+     * @param page 當前請求的頁碼,目前30筆資料1頁。
+     */
+    fun callGetNewsList(language: String?
+                        , begin: String?
+                        , end: String?
+                        , page: String?
+                        , successListener: IOnOptionListener<ApiBase.GetNewsList.Response>
+                        , failListener: IOnOptionListener<String>
+                        , completeListener: IOnOptionListener<Void>){
+
+        ITravelApiService
+            .invoke()
+            .getNewsList(language,begin,end,page)
             .enqueue(TravelApiCall(successListener,failListener,completeListener))
     }
 }

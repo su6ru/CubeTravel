@@ -8,6 +8,7 @@ import com.ci.v1_ci_view.ui.listener.IOnOptionListener
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.AttractionsBean
+import com.cube.cubetravel.data.beans.NewsBean
 import com.cube.cubetravel.data.config.CubeTravelConfig
 import com.cube.cubetravel.data.network.drawer.ApiBase
 import com.cube.cubetravel.data.repository.MainRepository
@@ -17,17 +18,22 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     // MARK:- ========================== Life
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
-
+        //呼叫 取得 景點
         callGetAttractionsList(CubeTravelConfig.PAGE_DEFAULT)
+        //呼叫 取得 最新消息
+        callGetNewsList(CubeTravelConfig.PAGE_DEFAULT)
 
     }
 
     // MARK:- ========================== Data
     /** 景點資料 總頁數  */
     var mAttractionsListTotalPage = "1"
-
     /** 景點資料 當前頁碼  */
     var mAttractionsListNowPage = "1"
+    /** 最新消息資料 總頁數  */
+    var mNewsListTotalPage = "1"
+    /** 最新消息資料 當前頁碼  */
+    var mNewsListNowPage = "1"
 
     /** 觸發點擊 景點 */
     val mAttractionsClickLiveData = MutableLiveData<Boolean>()
@@ -38,10 +44,13 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
     /** 景點列表 資料的 LiveData */
     val mAttractionsBeanListLiveData = MutableLiveData<List<AttractionsBean>>()
-
+    /** 最新消息 資料的 LiveData */
+    val mNewsBeanListLiveData = MutableLiveData<List<NewsBean>>()
 
     /** 景點列表itemView 點擊事件 的LiveData*/
     val mAttractionsListItemClickLiveData = MutableLiveData<AttractionsBean>()
+    /** 最新消息列表itemView 點擊事件 的LiveData*/
+    val mNewsListItemClickLiveData = MutableLiveData<NewsBean>()
     // MARK:- ========================== Event
     /** 當點擊 tab radiobutton */
     val mOnCheckedChangeListener = object : CompoundButton.OnCheckedChangeListener{
@@ -85,6 +94,8 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     /** 當 最新消息 Recyclerview 滑動到最頂部,觸發重新整理效果 */
     val mOnNewsListRefreshListener = object: IOnOptionListener<Void>{
         override fun onExecute(option: Void?) {
+            resetNewsData()
+            callGetNewsList(CubeTravelConfig.PAGE_DEFAULT)
 
         }
 
@@ -95,10 +106,16 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
         }
 
     }
+
     /** 當點擊 景點列表 的itemView*/
     fun onAttractionsListItemClick(attractionsBean : AttractionsBean){
         mAttractionsListItemClickLiveData.value = attractionsBean
     }
+    /** 當點擊 最新消息列表 的itemView*/
+    fun onNewsListItemClick(newsBean : NewsBean){
+        mNewsListItemClickLiveData.value = newsBean
+    }
+
     /** 當點擊 景點列表的 收藏 */
     fun onAttractionsListCheckedChangeListener(attractionsBean: AttractionsBean,isChecked: Boolean){
 
@@ -121,13 +138,28 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
         }
 
     }
+    /** 當 最新消息列表 滑到最底部 */
+    val mNewsListBottomReachedListener = object : IOnOptionListener<Void>{
+        override fun onExecute(option: Void?) {
 
+            //計算下一頁頁碼
+            if (mNewsListTotalPage.isNullOrEmpty()) {
+                return
+            }
+            val nextPage: Int = mNewsListNowPage.toInt() + 1
+            if (nextPage > mNewsListTotalPage.toInt()) {
+                return
+            }
+            callGetNewsList(nextPage.toString())
+        }
+
+    }
     // MARK:- ========================== Method
     /** 呼叫 取得 景點列表 */
     fun callGetAttractionsList(page: String){
         mIsLoadingLiveData.value = true
 
-        mainRepository.callGetNewsList("zh-tw"
+        mainRepository.callGetAttractionsList("zh-tw"
             ,null
             ,null
             ,null
@@ -176,12 +208,72 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
             })
     }
-    /** 重置景點列表資料 */
+    /** 呼叫 取得 最新消息 列表 */
+    fun callGetNewsList(page: String){
+        mIsLoadingLiveData.value = true
+
+        mainRepository.callGetNewsList("zh-tw"
+            ,null
+            ,null
+            ,page
+            ,object: IOnOptionListener<ApiBase.GetNewsList.Response>{
+                override fun onExecute(option: ApiBase.GetNewsList.Response?) {
+                    //總頁數計算
+                    val totalCount = option?.total
+                    if (totalCount != null) {
+                        var totalPage = totalCount/CubeTravelConfig.COUNT_EVERY_PAGE_DATA
+                        if (totalCount%CubeTravelConfig.COUNT_EVERY_PAGE_DATA != 0){
+                            totalPage ++
+                        }
+                        mNewsListTotalPage = totalPage.toString()
+                    }
+                    //刷新 當前資料 頁碼紀錄
+                    mNewsListNowPage = page
+
+                    //預計套到recyclerview的資料List
+                    var willUseNewsBeanList: MutableList<NewsBean> = mutableListOf()
+                    //當前UI中的資料List
+                    var nowUINewsBeanList = mNewsBeanListLiveData.value
+                    if (nowUINewsBeanList == null){
+                        nowUINewsBeanList = mutableListOf()
+                    }
+                    //剛從API取得的資料List
+                    var apiNewsBeanList = option?.data
+                    if (apiNewsBeanList.isNullOrEmpty()){
+                        apiNewsBeanList = mutableListOf()
+                    }
+                    willUseNewsBeanList.addAll(nowUINewsBeanList)
+                    willUseNewsBeanList.addAll(apiNewsBeanList)
+
+                    mNewsBeanListLiveData.value = willUseNewsBeanList
+                }
+
+            },object: IOnOptionListener<String>{
+                override fun onExecute(option: String?) {
+                    mMsgLiveData.value = option
+                }
+
+            },object : IOnOptionListener<Void>{
+                override fun onExecute(option: Void?) {
+                    mIsLoadingLiveData.value = false
+                }
+
+            })
+    }
+    /** 重置 景點 列表資料 */
     fun resetAttractionsData(){
         mAttractionsListTotalPage = "1"
 
         mAttractionsListNowPage = "1"
 
         mAttractionsBeanListLiveData.value = mutableListOf()
+    }
+    /** 重置 最新消息 列表資料 */
+    fun resetNewsData(){
+        mNewsListTotalPage = "1"
+
+        mNewsListNowPage = "1"
+
+        mNewsBeanListLiveData.value = mutableListOf()
     }
 }

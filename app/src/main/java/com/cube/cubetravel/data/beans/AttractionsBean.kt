@@ -1,7 +1,7 @@
 package com.cube.cubetravel.data.beans
 
 import com.google.gson.annotations.SerializedName
-
+/** 景點列表用的資料 */
 class AttractionsBean {
     /** 資料id */
     @SerializedName("id")

@@ -18,11 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:onRefreshed="@{viewmodel.mOnNewsListRefreshListener}">
-            <!-- 景點列表用 RecyclerView -->
+            <!-- 最新消息列表用 RecyclerView -->
             <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                app:onBottomReached="@{viewmodel.mNewsListBottomReachedListener}"/>
         </com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout>
 
 

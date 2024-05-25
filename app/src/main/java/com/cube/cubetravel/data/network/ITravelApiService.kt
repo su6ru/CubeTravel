@@ -57,4 +57,17 @@ interface ITravelApiService {
                            ,@Query("page") page: String?)
     : Call<ApiBase.GetAttractionsList.Response>
 
+    /** 最新消息列表
+     * @param language 語系
+     * @param begin 開始時間，格式 yyyy-MM-dd
+     * @param end 結束時間，格式 yyyy-MM-dd
+     * @param page 當前請求的頁碼,目前30筆資料1頁。
+     */
+    @GET("{lang}/Events/News?")
+    fun getNewsList(@Path("lang") language: String?
+                           ,@Query("begin") begin: String?
+                           ,@Query("end") end: String?
+                           ,@Query("page") page: String?)
+            : Call<ApiBase.GetNewsList.Response>
+
 }

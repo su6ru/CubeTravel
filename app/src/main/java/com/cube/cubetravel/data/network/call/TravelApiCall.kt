@@ -16,10 +16,6 @@ class TravelApiCall<T: BaseApiData.Response<*>>(
 
         if (p1.isSuccessful) {
 
-
-
-
-
             onCallSuccess(p1.body()!!)
         }else{
             var message = p1.message()
