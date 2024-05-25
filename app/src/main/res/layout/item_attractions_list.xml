@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -15,6 +16,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/transparent">
-
+        <!-- 住址 -->
+        <com.ci.v1_ci_view.ui.view.textview.CITextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{attractionsBean.address}"
+            tools:text="新北市"/>
+        <!--收藏-->
+        <com.ci.v1_ci_view.ui.view.checkbox.CICheckBox
+            style="@style/CollectionCheckboxStyle"
+            android:id="@+id/checkbox_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/n_collection"
+            android:checked="@{attractionsBean.MIsCollection}"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

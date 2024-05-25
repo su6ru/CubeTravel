@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 class ImagesBean {
     /** 圖片 URL */
     @SerializedName("src")
-    var src: Int? = null
+    var src: String? = null
     /** 未知 */
     @SerializedName("subject")
     var subject: String? = null

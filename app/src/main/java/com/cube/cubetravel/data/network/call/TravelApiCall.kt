@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
- /** 景點列表  ApiCall */
+ /** ApiCall */
 class TravelApiCall<T: BaseApiData.Response<*>>(
     private val successListener: IOnOptionListener<T>,
     private val failListener: IOnOptionListener<String>,

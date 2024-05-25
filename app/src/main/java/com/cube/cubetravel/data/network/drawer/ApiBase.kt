@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 class ApiBase {
     /** 景點列表 取得 */
     class GetAttractionsList{
-        class Response : BaseApiData.Response<List<AttractionsBean>>(){
+        class Response : BaseApiData.Response<MutableList<AttractionsBean>>(){
 
         }
     }

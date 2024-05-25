@@ -17,7 +17,7 @@
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:onRefreshed="@{viewmodel.mOnAttractionsListRefreshListener}">
+            app:onRefreshed="@{viewmodel.mOnAttractionsCollectionListRefreshListener}">
             <!-- 景點列表用 RecyclerView -->
             <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
                 android:id="@+id/recyclerview"

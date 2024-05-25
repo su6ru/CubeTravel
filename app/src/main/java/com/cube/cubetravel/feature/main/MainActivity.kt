@@ -22,9 +22,11 @@ import java.io.IOException
 class MainActivity : CubeTravelActivity<Void>() {
     // MARK:- ========================== Define
     companion object {
+        /** Fragment Tag >>> 景點列表 */
         const val FRAGMENT_ATTRACTIONS_LIST = "FRAGMENT_ATTRACTIONS_LIST"
-
+        /** Fragment Tag >>> 最新消息列表 */
         const val FRAGMENT_NEWS_LIST = "FRAGMENT_NEWS_LIST"
+        /** Fragment Tag >>> 景點收藏列表 */
 
         const val FRAGMENT_ATTRACTIONS_COLLECTION_LIST = "FRAGMENT_ATTRACTIONS_COLLECTION_LIST"
 

@@ -41,7 +41,18 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
         mAttractionsListFragmentBinding.recyclerview.adapter = mAttractionsListAdapter
 
         //====================== Observe
-
+        //onAttractionsBeanListObserve
+        mMainViewModel.mAttractionsBeanListLiveData.observe(viewLifecycleOwner,object :Observer<List<AttractionsBean>>{
+            override fun onChanged(value: List<AttractionsBean>) {
+                onAttractionsBeanListObserve(value)
+            }
+        })
+        //onAttractionsListItemClickObserve
+        mMainViewModel.mAttractionsListItemClickLiveData.observe(viewLifecycleOwner,object :Observer<AttractionsBean>{
+            override fun onChanged(value: AttractionsBean) {
+                onAttractionsListItemClickObserve(value)
+            }
+        })
 
     }
 
@@ -63,9 +74,17 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
         }
 
     }
-
+    /** 點擊 景點列表 的 收藏 */
+    val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :IOnOptionCheckedChangedListener<AttractionsBean> {
+        override fun onExecute(option: AttractionsBean, isChecked: Boolean) {
+            mMainViewModel.onAttractionsListCheckedChangeListener(option,isChecked)
+        }
+    }
     // MARK:- ========================== Observe
-
+    /** 觀察 景點列表資料 發生變化 */
+    fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
+        mAttractionsListAdapter.submitList(value)
+    }
 
     /** 觀察 當點擊 景點列表的item */
     fun onAttractionsListItemClickObserve(value: AttractionsBean){

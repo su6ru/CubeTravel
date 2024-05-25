@@ -71,15 +71,17 @@ class AttractionsBean {
     var url: String? = null
     /**分類1*/
     @SerializedName("category")
-    var category: List<CategoryBean>? = null
+    var category: MutableList<CategoryBean>? = null
     /**分類2*/
     @SerializedName("target")
-    var target: List<TargetBean>? = null
+    var target: MutableList<TargetBean>? = null
     /** 設施服務 */
     @SerializedName("service")
-    var service: List<ServiceBean>? = null
+    var service: MutableList<ServiceBean>? = null
     /** 圖片資料 */
     @SerializedName("images")
-    var images: List<ImagesBean>? = null
+    var images: MutableList<ImagesBean>? = null
 
+    //是否收藏
+    var mIsCollection = false
 }

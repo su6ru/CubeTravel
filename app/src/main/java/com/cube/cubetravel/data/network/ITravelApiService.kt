@@ -2,6 +2,7 @@ package com.cube.cubetravel.data.network
 
 import com.cube.cubetravel.data.config.URL_TRAVEL
 import com.cube.cubetravel.data.network.drawer.ApiBase
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -21,7 +22,16 @@ interface ITravelApiService {
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
-                .build()
+                .addInterceptor(Interceptor{chain: Interceptor.Chain ->
+                    val original = chain.request()
+
+                    val requestBuilder = original
+                        .newBuilder()
+                        .header("Accept","application/json")
+                        .method(original.method,original.body)
+                    val request = requestBuilder.build()
+                    chain.proceed(request)
+                }).build()
             return Retrofit.Builder()
                 .baseUrl(URL_TRAVEL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,7 +49,7 @@ interface ITravelApiService {
      * @param elong 經度(可能因後台資料本身不多,所以實測後我認為是多餘的)
      * @param page 當前請求的頁碼,目前30筆資料1頁。
      */
-    @GET("open-api/{lang}/Attractions/All?")
+    @GET("{lang}/Attractions/All?")
     fun getAttractionsList(@Path("lang") language: String?
                            ,@Query("categoryIds") categoryIds: String?
                            ,@Query("nlat") nlat: String?
