@@ -1,5 +1,6 @@
 package com.cube.cubetravel.feature.main.viewholder
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.ci.v1_ci_view.ui.util.CIResourceUtil
 import com.ci.v1_ci_view.ui.view.checkbox.CICheckBox
@@ -28,8 +29,13 @@ class AttractionsListViewHolder(val binding: ItemAttractionsListBinding) : Recyc
 
     // MARK: - ========================== Method
     fun bindData(attractionsBean: AttractionsBean){
-        binding.attractionsBean = attractionsBean
-        binding.executePendingBindings()
+        binding.apply {
+            this.attractionsBean = attractionsBean
+            executePendingBindings()
+            //如果圖片url為空 則 隱藏ImageView
+            image.visibility = if (attractionsBean.firstImageUrl.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
+        }
+
     }
 
 

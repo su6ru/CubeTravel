@@ -72,12 +72,11 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
         }
     }
+
     /** 當 景點 Recyclerview 滑動到最頂部,觸發重新整理效果 */
     val mOnAttractionsListRefreshListener = object: IOnOptionListener<Void>{
         override fun onExecute(option: Void?) {
-            mAttractionsListTotalPage = "1"
-
-            mAttractionsListNowPage = "1"
+            resetAttractionsData()
 
             callGetAttractionsList(CubeTravelConfig.PAGE_DEFAULT)
         }
@@ -176,5 +175,13 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                 }
 
             })
+    }
+    /** 重置景點列表資料 */
+    fun resetAttractionsData(){
+        mAttractionsListTotalPage = "1"
+
+        mAttractionsListNowPage = "1"
+
+        mAttractionsBeanListLiveData.value = mutableListOf()
     }
 }
