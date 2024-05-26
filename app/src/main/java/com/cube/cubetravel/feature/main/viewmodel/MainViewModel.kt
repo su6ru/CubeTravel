@@ -169,8 +169,8 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                     //總頁數計算
                     val totalCount = option?.total
                     if (totalCount != null) {
-                        var totalPage = totalCount/CubeTravelConfig.COUNT_EVERY_PAGE_DATA
-                        if (totalCount%CubeTravelConfig.COUNT_EVERY_PAGE_DATA != 0){
+                        var totalPage = totalCount / CubeTravelConfig.COUNT_EVERY_PAGE_DATA
+                        if (totalCount % CubeTravelConfig.COUNT_EVERY_PAGE_DATA != 0){
                             totalPage ++
                         }
                         mAttractionsListTotalPage = totalPage.toString()
@@ -180,17 +180,21 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
                     //預計套到recyclerview的資料List
                     var willUseAttractionsBeanList: MutableList<AttractionsBean> = mutableListOf()
+
                     //當前UI中的資料List
-                    var nowUIAttractionsBeanList = mAttractionsBeanListLiveData.value
-                    if (nowUIAttractionsBeanList == null){
-                        nowUIAttractionsBeanList = mutableListOf()
+                    if (page != CubeTravelConfig.PAGE_DEFAULT){
+                        var nowUIAttractionsBeanList = mAttractionsBeanListLiveData.value
+                        if (nowUIAttractionsBeanList == null){
+                            nowUIAttractionsBeanList = mutableListOf()
+                        }
+                        willUseAttractionsBeanList.addAll(nowUIAttractionsBeanList)
                     }
-                    //剛從API取得的資料List
+
+                    //從API取得的資料List
                     var apiAttractionsBeanList = option?.data
                     if (apiAttractionsBeanList.isNullOrEmpty()){
                         apiAttractionsBeanList = mutableListOf()
                     }
-                    willUseAttractionsBeanList.addAll(nowUIAttractionsBeanList)
                     willUseAttractionsBeanList.addAll(apiAttractionsBeanList)
 
                     mAttractionsBeanListLiveData.value = willUseAttractionsBeanList
@@ -210,6 +214,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     }
     /** 呼叫 取得 最新消息 列表 */
     fun callGetNewsList(page: String){
+
         mIsLoadingLiveData.value = true
 
         mainRepository.callGetNewsList("zh-tw"
@@ -221,8 +226,8 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                     //總頁數計算
                     val totalCount = option?.total
                     if (totalCount != null) {
-                        var totalPage = totalCount/CubeTravelConfig.COUNT_EVERY_PAGE_DATA
-                        if (totalCount%CubeTravelConfig.COUNT_EVERY_PAGE_DATA != 0){
+                        var totalPage = totalCount / CubeTravelConfig.COUNT_EVERY_PAGE_DATA
+                        if (totalCount % CubeTravelConfig.COUNT_EVERY_PAGE_DATA != 0){
                             totalPage ++
                         }
                         mNewsListTotalPage = totalPage.toString()
@@ -233,16 +238,19 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                     //預計套到recyclerview的資料List
                     var willUseNewsBeanList: MutableList<NewsBean> = mutableListOf()
                     //當前UI中的資料List
-                    var nowUINewsBeanList = mNewsBeanListLiveData.value
-                    if (nowUINewsBeanList == null){
-                        nowUINewsBeanList = mutableListOf()
+                    if (page != CubeTravelConfig.PAGE_DEFAULT){
+                        var nowUINewsBeanList = mNewsBeanListLiveData.value
+                        if (nowUINewsBeanList == null){
+                            nowUINewsBeanList = mutableListOf()
+                        }
+                        willUseNewsBeanList.addAll(nowUINewsBeanList)
                     }
-                    //剛從API取得的資料List
+
+                    //從API取得的資料List
                     var apiNewsBeanList = option?.data
                     if (apiNewsBeanList.isNullOrEmpty()){
                         apiNewsBeanList = mutableListOf()
                     }
-                    willUseNewsBeanList.addAll(nowUINewsBeanList)
                     willUseNewsBeanList.addAll(apiNewsBeanList)
 
                     mNewsBeanListLiveData.value = willUseNewsBeanList
@@ -266,7 +274,6 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
         mAttractionsListNowPage = "1"
 
-        mAttractionsBeanListLiveData.value = mutableListOf()
     }
     /** 重置 最新消息 列表資料 */
     fun resetNewsData(){
@@ -274,6 +281,5 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
         mNewsListNowPage = "1"
 
-        mNewsBeanListLiveData.value = mutableListOf()
     }
 }

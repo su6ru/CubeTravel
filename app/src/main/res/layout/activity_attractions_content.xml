@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.cube.cubetravel.feature.attractions.viewmodel.AttractionsContentViewModel" />
+
+
+
     </data>
     <!-- 最外層layout -->
     <FrameLayout
@@ -19,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <!-- 上方toolbar區塊 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -30,13 +36,13 @@
                     android:layout_height="wrap_content"
                     app:title_text="@string/n_attractions"
                     app:showLeftImage="true"/>
-                <!-- 前往 -->
+                <!-- 導航 -->
                 <com.ci.v1_ci_view.ui.view.textview.CITextView
-                    style="@style/ToolbarOpenWebStyle"
+                    style="@style/ToolbarOpenMapStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/n_go_to"
-                    android:onClick="@{()-> viewmodel.onGoToClick()}"/>
+                    android:text="@string/n_location"
+                    android:onClick="@{()-> viewmodel.onMapClick()}"/>
             </FrameLayout>
 
             <!-- 內容 區塊 -->
@@ -74,6 +80,24 @@
                         android:text="@={viewmodel.mAttractionsBeanLiveData.introduction}"
                         tools:text="內容說明"/>
 
+                    <!-- 開放時間說明 title -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentOpenTimeTextStyle"
+                        android:id="@+id/text_opentime_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/title_open_time_directions"
+                        android:visibility="@{viewmodel.mAttractionsBeanLiveData.openTime == null || viewmodel.mAttractionsBeanLiveData.openTime.isEmpty() ? View.GONE : View.VISIBLE}"
+                        tools:text="開放時間說明:"/>
+                    <!-- 開放時間說明 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentOpenTimeTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@={viewmodel.mAttractionsBeanLiveData.openTime}"
+                        tools:text="開放時間說明"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </ScrollView>

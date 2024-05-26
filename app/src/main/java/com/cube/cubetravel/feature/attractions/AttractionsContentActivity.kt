@@ -3,6 +3,7 @@ package com.cube.cubetravel.feature.attractions
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import com.ci.v1_ci_view.ui.util.CIIntentUtil
 import com.ci.v1_ci_view.ui.view.activity.CIActivity
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
@@ -40,7 +41,10 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
         mAttractionsContentViewModel.mImageBannerBeanListLiveData.observe(this) { value ->
             onImageBannerBeanListChanged(value)
         }
-
+        //onMapClickChanged
+        mAttractionsContentViewModel.mMapClickLiveData.observe(this) { value ->
+            onMapClickChanged(value)
+        }
         //====================== Init
     }
 
@@ -66,6 +70,10 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
             mActivityAttractionsContentBinding.bannerImage.submitList(bannerBeans)
 
         }
+    }
+    /** 觀察當點擊導航 */
+    fun onMapClickChanged(address: String){
+        CIIntentUtil.openGoogleMapToLocation(this, address,0.0,0.0)
     }
     // MARK:- ========================== Method
 

@@ -1,5 +1,6 @@
 package com.cube.cubetravel.feature.attractions.viewmodel
 
+import android.content.res.Resources
 import android.widget.CompoundButton
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -35,9 +36,23 @@ class AttractionsContentViewModel(private val attractionsContentRepository: Attr
     val mAttractionsBeanLiveData = MutableLiveData<AttractionsBean>()
     /** 最新消息 資料的 LiveData */
     val mImageBannerBeanListLiveData = MutableLiveData<MutableList<ImageBannerBean>>()
+
+    /** 觸發點擊 導航 的 LiveData */
+    val mMapClickLiveData = MutableLiveData<String>()
     // MARK:- ========================== Event
-    /** 當點擊前往 */
-    fun onGoToClick(){
+    /** 當點擊 導航 */
+    fun onMapClick(){
+        val attractionsBean = mAttractionsBeanLiveData.value
+        if (attractionsBean == null){
+            mMsgLiveData.value = Resources.getSystem().getString(R.string.msg_address_not_provided)
+            return
+        }
+        val address = attractionsBean.address
+        if (address.isNullOrEmpty()){
+            mMsgLiveData.value = Resources.getSystem().getString(R.string.msg_address_not_provided)
+            return
+        }
+        mMapClickLiveData.value = address
 
     }
     // MARK:- ========================== Method

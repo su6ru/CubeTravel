@@ -6,5 +6,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "attractions_collection_table")
 data class AttractionsCollectionTable (
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-    , val attractions_table_item_id: Int?
+    , val attractions_item_id: Int?
 )

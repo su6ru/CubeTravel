@@ -4,6 +4,11 @@
     <string name="n_news">最新消息</string>
     <string name="n_collection">收藏</string>
     <string name="n_attractions_collection">景點收藏</string>
-    <string name="n_go_to">前往</string>
+    <string name="n_location">導航</string>
+    <string name="title_open_time_directions">開放時間說明:</string>
+
+
+
+    <string name="msg_address_not_provided">未提供地址</string>
 
 </resources>

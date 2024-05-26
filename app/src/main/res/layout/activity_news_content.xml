@@ -30,13 +30,6 @@
                     android:layout_height="wrap_content"
                     app:title_text="@string/n_news"
                     app:showLeftImage="true"/>
-                <!-- 前往 -->
-                <com.ci.v1_ci_view.ui.view.textview.CITextView
-                    style="@style/ToolbarOpenWebStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/n_go_to"
-                    android:onClick="@{()-> viewmodel.onGoToClick()}"/>
             </FrameLayout>
 
             <!-- 內容 區塊 -->

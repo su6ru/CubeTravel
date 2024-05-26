@@ -111,7 +111,7 @@ class CIMultipleImageBanner<T : IMultipleBannerProvider> @JvmOverloads construct
 
     // MARK:-================= Event
     /** [CIMultipleImageBanner] 子item 點擊監聽器 */
-    lateinit var mOnBannerItemClick: IOnOptionListener<T>
+    var mOnBannerItemClick: IOnOptionListener<T>? = null
     /** 當發生頁面切換 (無論是透過點擊 上一個 .下一個 .左滑動 .右滑動) */
     fun onViewPagerChanged(position: Int){
         for (i in 0 until mRadioGroup.childCount) {
@@ -121,8 +121,7 @@ class CIMultipleImageBanner<T : IMultipleBannerProvider> @JvmOverloads construct
     }
     /** 當點擊banner內部item */
     fun onBannerItemClick(option : T?){
-        mOnBannerItemClick.onExecute(option)
-
+        mOnBannerItemClick?.onExecute(option)
     }
     // MARK:-================= Method
     init {
