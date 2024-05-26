@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.ci.v1_ci_view.ui.util.CIFragmentUtil
+import com.ci.v1_ci_view.ui.util.CIPermissionsUtil
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
@@ -65,6 +66,8 @@ class MainActivity : CubeTravelActivity<Void>() {
                 ,R.id.fragment
                 ,mAttractionsListFragment
                 ,FRAGMENT_ATTRACTIONS_LIST)
+
+        CIPermissionsUtil.registerLocationPermission(this)
     }
 
     // MARK:- ========================== View

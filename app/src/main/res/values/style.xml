@@ -20,6 +20,13 @@
         <item name="android:textColor">@color/blue</item>
         <item name="android:textSize">@dimen/dimens_very_very_very_small</item>
     </style>
+    <!-- 前往網頁Style -->
+    <style name="GoToWebTextStyle">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/dimens_very_very_small</item>
+
+    </style>
+
     <!-- 景點詳細內頁 標題Style -->
     <style name="AttractionsContentTitleTextStyle">
         <item name="android:gravity">center</item>

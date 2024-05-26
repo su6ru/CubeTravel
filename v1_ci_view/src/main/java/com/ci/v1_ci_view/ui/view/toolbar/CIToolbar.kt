@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.databinding.BindingAdapter
 import com.ci.v1_ci_view.R
 import com.ci.v1_ci_view.ui.view.imageview.CIImageView
 
@@ -19,7 +20,13 @@ import com.ci.v1_ci_view.ui.view.imageview.CIImageView
 open class CIToolbar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : LinearLayoutCompat(context, attrs) {
-
+    companion object {
+        @JvmStatic
+        @BindingAdapter("title_text")
+        fun setTitleText(view: CIToolbar, title: String?) {
+            view.mTitleTextView.text = title
+        }
+    }
 
 
     // MARK:-================= View

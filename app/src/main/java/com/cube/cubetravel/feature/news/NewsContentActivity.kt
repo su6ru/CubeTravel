@@ -10,12 +10,14 @@ import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.NewsBean
+import com.cube.cubetravel.data.beans.WebBean
 import com.cube.cubetravel.data.factory.MainViewModelFactory
 import com.cube.cubetravel.data.factory.NewsContentViewModelFactory
 import com.cube.cubetravel.databinding.ActivityMainBinding
 import com.cube.cubetravel.databinding.ActivityNewsContentBinding
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 import com.cube.cubetravel.feature.news.viewmodel.NewsContentViewModel
+import com.cube.cubetravel.feature.web.WebActivity
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -47,7 +49,10 @@ class NewsContentActivity : CubeTravelActivity<NewsBean>() {
 
 
         //====================== Observe
-
+        //onGoToWebClickChanged
+        mNewsContentViewModel.mGoToWebClickLiveData.observe(this) {
+            onGoToWebClickChanged(it)
+        }
         //====================== Init
     }
 
@@ -63,7 +68,11 @@ class NewsContentActivity : CubeTravelActivity<NewsBean>() {
         ViewModelProvider(this, NewsContentViewModelFactory(getIntentData(NewsBean::class.java)))[NewsContentViewModel::class.java]
     }
     // MARK:- ========================== Observe
+    /** 觀察 當點擊 前往網頁 */
+    fun onGoToWebClickChanged(webBean: WebBean){
 
+        WebActivity.startActivity(this,webBean)
+    }
     // MARK:- ========================== Method
 
 

@@ -9,9 +9,11 @@ import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.data.beans.ImageBannerBean
+import com.cube.cubetravel.data.beans.WebBean
 import com.cube.cubetravel.data.factory.AttractionsContentViewModelFactory
 import com.cube.cubetravel.databinding.ActivityAttractionsContentBinding
 import com.cube.cubetravel.feature.attractions.viewmodel.AttractionsContentViewModel
+import com.cube.cubetravel.feature.web.WebActivity
 
 /** 景點內頁 */
 class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
@@ -38,12 +40,16 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
 
         //====================== Observe
         //onImageBannerBeanListChanged
-        mAttractionsContentViewModel.mImageBannerBeanListLiveData.observe(this) { value ->
-            onImageBannerBeanListChanged(value)
+        mAttractionsContentViewModel.mImageBannerBeanListLiveData.observe(this) {
+            onImageBannerBeanListChanged(it)
         }
         //onMapClickChanged
-        mAttractionsContentViewModel.mMapClickLiveData.observe(this) { value ->
-            onMapClickChanged(value)
+        mAttractionsContentViewModel.mMapClickLiveData.observe(this) {
+            onMapClickChanged(it)
+        }
+        //onGoToWebClickChanged
+        mAttractionsContentViewModel.mGoToWebClickLiveData.observe(this) {
+            onGoToWebClickChanged(it)
         }
         //====================== Init
     }
@@ -71,9 +77,14 @@ class AttractionsContentActivity : CubeTravelActivity<AttractionsBean>() {
 
         }
     }
-    /** 觀察當點擊導航 */
+    /** 觀察 當點擊 導航 */
     fun onMapClickChanged(address: String){
         CIIntentUtil.openGoogleMapToLocation(this, address,0.0,0.0)
+    }
+    /** 觀察 當點擊 前往網頁 */
+    fun onGoToWebClickChanged(webBean: WebBean){
+
+        WebActivity.startActivity(this,webBean)
     }
     // MARK:- ========================== Method
 
