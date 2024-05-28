@@ -1,17 +1,52 @@
 package com.cube.cubetravel.custom.activity
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.FrameLayout
 import com.ci.v1_ci_view.ui.view.activity.CIActivity
 import com.ci.v1_ci_view.ui.view.toolbar.CIToolbar
 import com.cube.cubetravel.R
+import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
+import java.util.Locale
 
 abstract class CubeTravelActivity<T>: CIActivity<T>() {
 
     // MARK:- ========================== Life
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        //讀取指定語系檔
+        val languageBean = CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean
+        val appResourceCode = languageBean.appResourceCode
+
+        setLocale(this, appResourceCode)
+
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        //讀取指定語系檔
+        val languageBean = CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean
+        val appResourceCode = languageBean.appResourceCode
+
+        setLocale(this, appResourceCode)
+    }
+
+    fun setLocale(context: Context, languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val resources = context.resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+    }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 

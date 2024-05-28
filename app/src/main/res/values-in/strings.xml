@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CubeTravel</string>
+    <string name="n_attractions">Tempat Wisata</string>
+    <string name="n_news">Berita Terbaru</string>
+    <string name="n_collection">Koleksi</string>
+    <string name="n_attractions_collection">Koleksi Tempat Wisata</string>
+    <string name="n_location">Navigasi</string>
+    <string name="title_open_time_directions">Penjelasan Waktu Buka:</string>
+    <string name="n_go_to_web"><u>Kunjungi Situs Web</u></string>
+
+    <string name="msg_data_abnormal">Data Tidak Normal</string>
+    <string name="msg_address_not_provided">Alamat Tidak Disediakan</string>
+    <string name="msg_this_data_web_url_not_provided">Data ini tidak menyediakan URL</string>
+    <string name="n_close">Tutup</string>
+    <string name="n_language">Bahasa</string>
+    <string name="n_set">Pengaturan</string>
+</resources>

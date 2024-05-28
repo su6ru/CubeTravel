@@ -14,5 +14,7 @@ class CubeTravelConfig{
         const val DEFAULT_LANGUAGE_LANGUAGE = "正體中文"
         const val DEFAULT_LANGUAGE_VALUE = "zh-tw"
         const val DEFAULT_LANGUAGE_IMAGE = "ic_tw"
+        const val DEFAULT_LANGUAGE_APP_RESOURCE_CODE = "zh-rTW"
+
     }
 }

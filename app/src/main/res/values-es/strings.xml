@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CubeTravel</string>
+    <string name="n_attractions">Atracciones</string>
+    <string name="n_news">Últimas noticias</string>
+    <string name="n_collection">Colección</string>
+    <string name="n_attractions_collection">Colección de atracciones</string>
+    <string name="n_location">Navegación</string>
+    <string name="title_open_time_directions">Horario de apertura:</string>
+    <string name="n_go_to_web"><u>Ir a la página web</u></string>
+
+    <string name="msg_data_abnormal">Datos anormales</string>
+    <string name="msg_address_not_provided">Dirección no proporcionada</string>
+    <string name="msg_this_data_web_url_not_provided">Este dato no proporciona URL</string>
+    <string name="n_close">Cerrar</string>
+    <string name="n_language">Idioma</string>
+    <string name="n_set">Configuración</string>
+</resources>

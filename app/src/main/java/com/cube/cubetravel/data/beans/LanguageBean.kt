@@ -7,4 +7,6 @@ class LanguageBean {
     var value: String = ""
     /** 圖片名稱 */
     var image: String = ""
+    /** 對應此語系的 strings.xml */
+    var appResourceCode: String = ""
 }

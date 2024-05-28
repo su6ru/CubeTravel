@@ -23,6 +23,8 @@ class AppManager(context: Context) {
                 languageBean.language = CubeTravelConfig.DEFAULT_LANGUAGE_LANGUAGE
                 languageBean.value = CubeTravelConfig.DEFAULT_LANGUAGE_VALUE
                 languageBean.image = CubeTravelConfig.DEFAULT_LANGUAGE_IMAGE
+                languageBean.appResourceCode = CubeTravelConfig.DEFAULT_LANGUAGE_APP_RESOURCE_CODE
+
                 return languageBean
             }
 

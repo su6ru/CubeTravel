@@ -1,7 +1,11 @@
 package com.cube.cubetravel.feature.main
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +27,7 @@ import com.cube.cubetravel.databinding.FragmentSettingBinding
 import com.cube.cubetravel.feature.language.LanguageListActivity
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 import com.cube.cubetravel.feature.news.NewsContentActivity
+import java.util.Locale
 
 /** 設定 Fragment */
 class SettingFragment: CIFragment(R.layout.fragment_setting) {
@@ -70,8 +75,33 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
     /** 當從語言選擇返回 */
     private fun onLanguageActivityResultEvent(){
         //當觸發語言更換,重新讀取全部資料
-        mMainViewModel.reloadAllListData()
+      //  mMainViewModel.reloadAllListData()
+
+        val activity = getMyActivity()
+        if (activity != null){
+            if (activity is CubeTravelActivity<*>){
+                val refresh = Intent(activity, MainActivity::class.java)
+                activity.startActivity(refresh.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+
+        }
     }
+    fun setAppLocale(activity: Activity, languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val resources = activity.resources
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        activity.createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+
+        val refresh = Intent(activity, MainActivity::class.java)
+        activity.startActivity(refresh.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+
+    }
+
+
     // MARK:- ========================== Observe
     /** 觀察當前是否 點擊 語言 */
     private fun onLanguageClickObserve(boolean: Boolean) {
@@ -84,4 +114,5 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
 
         }
     }
+
 }
