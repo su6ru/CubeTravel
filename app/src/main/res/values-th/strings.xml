@@ -7,11 +7,13 @@
     <string name="n_location">นำทาง</string>
     <string name="title_open_time_directions">คำแนะนำเวลาเปิดทำการ:</string>
     <string name="n_go_to_web"><u>ไปยังเว็บไซต์</u></string>
+    <string name="n_web">Web</string>
+    <string name="n_close">ปิด</string>
+    <string name="n_language">ภาษา</string>
+    <string name="n_set">ตั้งค่า</string>
 
     <string name="msg_data_abnormal">ข้อมูลผิดปกติ</string>
     <string name="msg_address_not_provided">ไม่ได้ระบุที่อยู่</string>
     <string name="msg_this_data_web_url_not_provided">ไม่ได้ระบุ URL ของข้อมูลนี้</string>
-    <string name="n_close">ปิด</string>
-    <string name="n_language">ภาษา</string>
-    <string name="n_set">ตั้งค่า</string>
+
 </resources>

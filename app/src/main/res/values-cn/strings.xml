@@ -7,11 +7,13 @@
     <string name="n_location">导航</string>
     <string name="title_open_time_directions">开放时间说明:</string>
     <string name="n_go_to_web"><u>前往网页</u></string>
+    <string name="n_web">Web</string>
+    <string name="n_close">关闭</string>
+    <string name="n_language">语言</string>
+    <string name="n_set">设置</string>
+
 
     <string name="msg_data_abnormal">数据异常</string>
     <string name="msg_address_not_provided">未提供地址</string>
     <string name="msg_this_data_web_url_not_provided">此数据未提供网址</string>
-    <string name="n_close">关闭</string>
-    <string name="n_language">语言</string>
-    <string name="n_set">设置</string>
 </resources>

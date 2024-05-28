@@ -11,15 +11,40 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/bg_listview_layout">
-        <!-- 語系列表用 RecyclerView -->
-        <com.ci.v1_ci_view.ui.view.textview.CITextView
-            style="@style/SettingItemTextStyle"
+        android:orientation="vertical">
+        <!-- 內容 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/n_language"
-            android:onClick="@{() -> viewmodel.onLanguageClickClick()}"/>
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_listview_layout">
+            <!-- 語系列表用 RecyclerView -->
+            <com.ci.v1_ci_view.ui.view.textview.CITextView
+                style="@style/SettingItemTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/n_language"
+                android:onClick="@{() -> viewmodel.onLanguageClickClick()}"/>
+            <!-- 分隔線 -->
+            <View
+                style="@style/Line"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"/>
+            <!-- 前往官網 -->
+            <com.ci.v1_ci_view.ui.view.textview.CITextView
+                style="@style/SettingItemTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/n_go_to_web"
+                android:onClick="@{() -> viewmodel.onGoToWebClickClick()}"/>
+            <!-- 分隔線 -->
+            <View
+                style="@style/Line"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

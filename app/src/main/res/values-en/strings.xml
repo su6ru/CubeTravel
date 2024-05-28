@@ -7,11 +7,13 @@
     <string name="n_location">Navigation</string>
     <string name="title_open_time_directions">Opening Hours:</string>
     <string name="n_go_to_web"><u>Go to Website</u></string>
+    <string name="n_web">Web</string>
+    <string name="n_close">Close</string>
+    <string name="n_language">Language</string>
+    <string name="n_set">Settings</string>
 
     <string name="msg_data_abnormal">Data Abnormal</string>
     <string name="msg_address_not_provided">Address Not Provided</string>
     <string name="msg_this_data_web_url_not_provided">This data does not provide a URL</string>
-    <string name="n_close">Close</string>
-    <string name="n_language">Language</string>
-    <string name="n_set">Settings</string>
+
 </resources>

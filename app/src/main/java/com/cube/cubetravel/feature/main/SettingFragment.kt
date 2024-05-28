@@ -23,10 +23,12 @@ import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.data.beans.LanguageBean
 import com.cube.cubetravel.data.beans.NewsBean
+import com.cube.cubetravel.data.beans.WebBean
 import com.cube.cubetravel.databinding.FragmentSettingBinding
 import com.cube.cubetravel.feature.language.LanguageListActivity
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 import com.cube.cubetravel.feature.news.NewsContentActivity
+import com.cube.cubetravel.feature.web.WebActivity
 import java.util.Locale
 
 /** 設定 Fragment */
@@ -59,7 +61,11 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
             onLanguageClickObserve(it)
 
         }
+        //onGoToWebClickObserve
+        mMainViewModel.mGoToWebClickLiveData.observe(viewLifecycleOwner){
+            onGoToWebClickObserve(it)
 
+        }
 
     }
 
@@ -74,32 +80,17 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
     // MARK: - ========================== Event
     /** 當從語言選擇返回 */
     private fun onLanguageActivityResultEvent(){
-        //當觸發語言更換,重新讀取全部資料
-      //  mMainViewModel.reloadAllListData()
-
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
+                //重啟activity
                 val refresh = Intent(activity, MainActivity::class.java)
                 activity.startActivity(refresh.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
 
         }
     }
-    fun setAppLocale(activity: Activity, languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val resources = activity.resources
-        val config = Configuration(resources.configuration)
-        config.setLocale(locale)
-        activity.createConfigurationContext(config)
-        resources.updateConfiguration(config, resources.displayMetrics)
 
-
-        val refresh = Intent(activity, MainActivity::class.java)
-        activity.startActivity(refresh.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-
-    }
 
 
     // MARK:- ========================== Observe
@@ -109,6 +100,18 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
                 LanguageListActivity.startActivity(activity,mLanguageActivityResultLauncher)
+
+            }
+
+        }
+    }
+    /** 觀察當前是否 點擊 前往網頁 */
+    private fun onGoToWebClickObserve(webBean: WebBean) {
+        val activity = getMyActivity()
+        if (activity != null){
+            if (activity is CubeTravelActivity<*>){
+
+                WebActivity.startActivity(activity,webBean)
 
             }
 

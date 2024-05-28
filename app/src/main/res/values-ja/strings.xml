@@ -7,12 +7,12 @@
     <string name="n_location">ナビゲーション</string>
     <string name="title_open_time_directions">開場時間の説明:</string>
     <string name="n_go_to_web"><u>ウェブサイトにアクセスする</u></string>
-
+    <string name="n_web">Web</string>
+    <string name="n_close">閉じる</string>
+    <string name="n_language">言語</string>
+    <string name="n_set">設定</string>
 
     <string name="msg_data_abnormal">データ異常</string>
     <string name="msg_address_not_provided">住所が提供されていません</string>
     <string name="msg_this_data_web_url_not_provided">このデータのウェブサイトURLが提供されていません</string>
-    <string name="n_close">閉じる</string>
-    <string name="n_language">言語</string>
-    <string name="n_set">設定</string>
 </resources>

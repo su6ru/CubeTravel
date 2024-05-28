@@ -1,5 +1,6 @@
 package com.cube.cubetravel.feature.main.viewmodel
 
+import android.content.res.Resources
 import android.widget.CompoundButton
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -10,6 +11,7 @@ import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.data.beans.LanguageBean
 import com.cube.cubetravel.data.beans.NewsBean
+import com.cube.cubetravel.data.beans.WebBean
 import com.cube.cubetravel.data.config.CubeTravelConfig
 import com.cube.cubetravel.data.network.drawer.ApiBase
 import com.cube.cubetravel.data.repository.MainRepository
@@ -46,6 +48,8 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     val mSettingClickLiveData = MutableLiveData<Boolean>()
     /** 觸發點擊 語言 */
     val mLanguageClickLiveData = MutableLiveData<Boolean>()
+    /** 觸發點擊 前往官網 */
+    val mGoToWebClickLiveData = MutableLiveData<WebBean>()
 
     /** 景點列表 資料的 LiveData */
     val mAttractionsBeanListLiveData = MutableLiveData<List<AttractionsBean>>()
@@ -130,6 +134,14 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     /** 當點擊 設定內的 語言 */
     fun onLanguageClickClick(){
         mLanguageClickLiveData.value = true
+    }
+    /** 當點擊 設定內的 前往官網 */
+    fun onGoToWebClickClick(){
+
+        val webBean = WebBean()
+        webBean.url = CubeTravelConfig.WEB_URL
+
+        mGoToWebClickLiveData.value = webBean
     }
 
     /** 當點擊 景點列表的 收藏 */

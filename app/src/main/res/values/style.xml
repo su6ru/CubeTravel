@@ -64,8 +64,9 @@
 
     <!-- 設定文字 Style -->
     <style name="SettingItemTextStyle">
+        <item name="android:padding">12dp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/dimens_small</item>
+        <item name="android:textSize">@dimen/dimens_big</item>
 
     </style>
     <!-- 語言 Style -->
@@ -92,4 +93,10 @@
 
     </style>
 
+    <!-- 分隔線 -->
+    <style name="Line">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/black</item>
+    </style>
 </resources>

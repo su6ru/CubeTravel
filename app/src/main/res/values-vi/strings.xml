@@ -7,11 +7,13 @@
     <string name="n_location">Hướng dẫn</string>
     <string name="title_open_time_directions">Giờ mở cửa:</string>
     <string name="n_go_to_web"><u>Truy cập trang web</u></string>
+    <string name="n_web">Web</string>
+    <string name="n_close">Đóng</string>
+    <string name="n_language">Ngôn ngữ</string>
+    <string name="n_set">Cài đặt</string>
 
     <string name="msg_data_abnormal">Dữ liệu bất thường</string>
     <string name="msg_address_not_provided">Không cung cấp địa chỉ</string>
     <string name="msg_this_data_web_url_not_provided">Dữ liệu này không cung cấp URL</string>
-    <string name="n_close">Đóng</string>
-    <string name="n_language">Ngôn ngữ</string>
-    <string name="n_set">Cài đặt</string>
+
 </resources>

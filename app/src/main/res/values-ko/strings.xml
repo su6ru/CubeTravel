@@ -7,11 +7,13 @@
     <string name="n_location">내비게이션</string>
     <string name="title_open_time_directions">개방 시간 설명:</string>
     <string name="n_go_to_web"><u>웹 페이지로 이동</u></string>
+    <string name="n_web">Web</string>
+    <string name="n_close">닫기</string>
+    <string name="n_language">언어</string>
+    <string name="n_set">설정</string>
 
     <string name="msg_data_abnormal">데이터 이상</string>
     <string name="msg_address_not_provided">주소 미제공</string>
     <string name="msg_this_data_web_url_not_provided">이 데이터는 웹 주소를 제공하지 않습니다</string>
-    <string name="n_close">닫기</string>
-    <string name="n_language">언어</string>
-    <string name="n_set">설정</string>
+
 </resources>

@@ -10,6 +10,11 @@ class CubeTravelConfig{
         /** API 預設初始頁碼 */
         const val PAGE_DEFAULT = "1"
 
+
+        /** 官網 */
+        const val WEB_URL = "https://www.travel.taipei/"
+
+
         /** 預設語系設定 */
         const val DEFAULT_LANGUAGE_LANGUAGE = "正體中文"
         const val DEFAULT_LANGUAGE_VALUE = "zh-tw"
