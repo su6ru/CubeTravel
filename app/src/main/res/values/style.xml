@@ -3,9 +3,11 @@
     <style name="MainBottomTabStyle">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color_select_main_tab</item>
-        <item name="android:textSize">@dimen/dimens_big</item>
+        <item name="android:textSize">@dimen/dimens_very_very_small</item>
+        <item name="android:drawableTint">@color/color_select_main_tab</item>
         <item name="android:button">@null</item>
     </style>
+
     <!-- 收藏按鈕 Style -->
     <style name="CollectionCheckboxStyle">
         <item name="android:gravity">center</item>

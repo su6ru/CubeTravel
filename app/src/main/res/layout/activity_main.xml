@@ -20,13 +20,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+            <!--Fragment 內容-->
+            <FrameLayout
+                android:id="@+id/fragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="6dp"/>
             <!-- 景點 & 最新消息 & 收藏 -->
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/black">
                 <!-- 景點 -->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
                     style="@style/MainBottomTabStyle"
@@ -36,6 +45,7 @@
                     android:layout_weight="1"
                     android:text="@string/n_attractions"
                     android:checked="true"
+                    android:drawableTop="@drawable/ic_attractions"
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
                 <!--最新消息-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
@@ -45,17 +55,19 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/n_news"
+                    android:drawableTop="@drawable/ic_news"
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
-                <!-- 景點 收藏-->
+                <!-- 收藏-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
                     style="@style/MainBottomTabStyle"
                     android:id="@+id/radiobutton_attractions_collection"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/n_attractions_collection"
+                    android:text="@string/n_collection"
+                    android:drawableTop="@drawable/ic_bookmark"
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
-                <!-- 設定 收藏-->
+                <!-- 設定-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
                     style="@style/MainBottomTabStyle"
                     android:id="@+id/radiobutton_setting"
@@ -63,16 +75,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/n_set"
+                    android:drawableTop="@drawable/ic_setting"
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
 
             </RadioGroup>
-            <!--Fragment 內容-->
-            <FrameLayout
-                android:id="@+id/fragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="6dp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </FrameLayout>
