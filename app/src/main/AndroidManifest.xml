@@ -29,7 +29,8 @@
             android:name=".feature.news.NewsContentActivity"/>
         <activity
             android:name=".feature.attractions.AttractionsContentActivity"/>
-
+        <activity
+            android:name=".feature.language.LanguageListActivity"/>
         <activity
             android:name=".feature.web.WebActivity"/>
     </application>

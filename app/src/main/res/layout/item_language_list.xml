@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+         <variable
+            name="languageBean"
+            type="com.cube.cubetravel.data.beans.LanguageBean" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_listview_layout">
+        <!-- 國旗 -->
+        <com.ci.v1_ci_view.ui.view.imageview.CIImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:setImageResource="@{languageBean.image}"
+            tools:background="@drawable/ic_tw"/>
+        <!-- 語言 -->
+        <com.ci.v1_ci_view.ui.view.textview.CITextView
+            style="@style/LanguageItemTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@={languageBean.language}"
+            tools:text="中文"/>
+    </androidx.appcompat.widget.LinearLayoutCompat></layout>

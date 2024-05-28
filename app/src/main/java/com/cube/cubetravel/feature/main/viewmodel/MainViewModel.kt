@@ -8,6 +8,7 @@ import com.ci.v1_ci_view.ui.listener.IOnOptionListener
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.beans.AttractionsBean
+import com.cube.cubetravel.data.beans.LanguageBean
 import com.cube.cubetravel.data.beans.NewsBean
 import com.cube.cubetravel.data.config.CubeTravelConfig
 import com.cube.cubetravel.data.network.drawer.ApiBase
@@ -41,16 +42,24 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     val mNewsClickLiveData = MutableLiveData<Boolean>()
     /** 觸發點擊 景點收藏 */
     val mAttractionsCollectionClickLiveData = MutableLiveData<Boolean>()
+    /** 觸發點擊 設定 */
+    val mSettingClickLiveData = MutableLiveData<Boolean>()
+    /** 觸發點擊 語言 */
+    val mLanguageClickLiveData = MutableLiveData<Boolean>()
 
     /** 景點列表 資料的 LiveData */
     val mAttractionsBeanListLiveData = MutableLiveData<List<AttractionsBean>>()
     /** 最新消息 資料的 LiveData */
     val mNewsBeanListLiveData = MutableLiveData<List<NewsBean>>()
 
+
+
     /** 景點列表itemView 點擊事件 的LiveData*/
     val mAttractionsListItemClickLiveData = MutableLiveData<AttractionsBean>()
     /** 最新消息列表itemView 點擊事件 的LiveData*/
     val mNewsListItemClickLiveData = MutableLiveData<NewsBean>()
+
+
     // MARK:- ========================== Event
     /** 當點擊 tab radiobutton */
     val mOnCheckedChangeListener = object : CompoundButton.OnCheckedChangeListener{
@@ -78,7 +87,13 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                 }
                 return
             }
-
+            //設定
+            if (id == R.id.radiobutton_setting){
+                if (isChecked) {
+                    mSettingClickLiveData.value = true
+                }
+                return
+            }
         }
     }
 
@@ -111,16 +126,19 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     fun onAttractionsListItemClick(attractionsBean : AttractionsBean){
         mAttractionsListItemClickLiveData.value = attractionsBean
     }
-    /** 當點擊 最新消息列表 的itemView*/
-    fun onNewsListItemClick(newsBean : NewsBean){
-        mNewsListItemClickLiveData.value = newsBean
+    /** 當點擊 設定內的 語言 */
+    fun onLanguageClickClick(){
+        mLanguageClickLiveData.value = true
     }
 
     /** 當點擊 景點列表的 收藏 */
     fun onAttractionsListCheckedChangeListener(attractionsBean: AttractionsBean,isChecked: Boolean){
 
     }
-
+    /** 當點擊 最新消息列表 的itemView*/
+    fun onNewsListItemClick(newsBean : NewsBean){
+        mNewsListItemClickLiveData.value = newsBean
+    }
 
     /** 當 景點列表 滑到最底部 */
     val mAttractionsListBottomReachedListener = object : IOnOptionListener<Void>{

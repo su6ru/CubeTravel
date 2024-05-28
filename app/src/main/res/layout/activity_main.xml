@@ -55,6 +55,15 @@
                     android:layout_weight="1"
                     android:text="@string/n_attractions_collection"
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
+                <!-- 設定 收藏-->
+                <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
+                    style="@style/MainBottomTabStyle"
+                    android:id="@+id/radiobutton_setting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/n_set"
+                    app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
 
             </RadioGroup>
             <!--Fragment 內容-->

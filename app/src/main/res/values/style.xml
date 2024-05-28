@@ -59,6 +59,21 @@
         <item name="android:textSize">@dimen/dimens_very_very_very_small</item>
     </style>
 
+
+    <!-- 設定文字 Style -->
+    <style name="SettingItemTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimens_small</item>
+
+    </style>
+    <!-- 語言 Style -->
+    <style name="LanguageItemTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimens_big</item>
+
+    </style>
+
+
     <!-- 通用 Toolbar Style -->
     <style name="ToolbarStyle">
         <item name="title_text_color">@color/white</item>

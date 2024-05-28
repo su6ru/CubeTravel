@@ -12,6 +12,9 @@
     <string name="msg_data_abnormal">資料異常</string>
     <string name="msg_address_not_provided">未提供地址</string>
     <string name="msg_this_data_web_url_not_provided">此資料未提供網址</string>
+    <string name="n_close">關閉</string>
+    <string name="n_language">語言</string>
+    <string name="n_set">設定</string>
 
 
 </resources>

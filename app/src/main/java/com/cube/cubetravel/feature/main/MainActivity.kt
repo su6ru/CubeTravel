@@ -28,9 +28,9 @@ class MainActivity : CubeTravelActivity<Void>() {
         /** Fragment Tag >>> 最新消息列表 */
         const val FRAGMENT_NEWS_LIST = "FRAGMENT_NEWS_LIST"
         /** Fragment Tag >>> 景點收藏列表 */
-
         const val FRAGMENT_ATTRACTIONS_COLLECTION_LIST = "FRAGMENT_ATTRACTIONS_COLLECTION_LIST"
-
+        /** Fragment Tag >>> 設定 */
+        const val FRAGMENT_SETTING = "FRAGMENT_SETTING"
     }
 
     override fun mBaseViewModel(): BaseViewModel {
@@ -59,6 +59,10 @@ class MainActivity : CubeTravelActivity<Void>() {
         mMainViewModel.mAttractionsCollectionClickLiveData.observe(this) { value ->
             onAttractionsCollectionClickObserve(value)
         }
+        //onSettingClickObserve
+        mMainViewModel.mSettingClickLiveData.observe(this) { value ->
+            onSettingClickObserve(value)
+        }
         //====================== Init
         //預設顯示 AttractionsListFragment
         CIFragmentUtil
@@ -82,6 +86,10 @@ class MainActivity : CubeTravelActivity<Void>() {
     /** 景點收藏 列表 Fragment */
     val mAttractionsCollectionListFragment by lazy {
         AttractionsCollectionListFragment()
+    }
+    /** 設定 Fragment */
+    val mSettingFragment by lazy {
+        SettingFragment()
     }
     // MARK:- ========================== Data
     /** Data Binding */
@@ -122,6 +130,16 @@ class MainActivity : CubeTravelActivity<Void>() {
                     ,R.id.fragment
                     ,mAttractionsCollectionListFragment
                     , FRAGMENT_ATTRACTIONS_COLLECTION_LIST)
+        }
+    }
+    /** 觀察當前是否 點擊 設定 */
+    private fun onSettingClickObserve(boolean: Boolean) {
+        if (boolean) {
+            CIFragmentUtil
+                .switchFragment(this
+                    ,R.id.fragment
+                    ,mSettingFragment
+                    , FRAGMENT_SETTING)
         }
     }
     // MARK:- ========================== Method
