@@ -30,8 +30,11 @@ abstract class CIActivity<T> : AppCompatActivity() {
         /** 原本的startActivityForResult已經棄用
          * 現在需要使用 ActivityResultLauncher<Intent>
          */
-        fun startResultActivity(activity: CIActivity<*>,cls: Class<out CIActivity<*>?>?,activityResultLauncher: ActivityResultLauncher<Intent>){
+        fun startResultActivity(activity: CIActivity<*>,cls: Class<out CIActivity<*>?>?,activityResultLauncher: ActivityResultLauncher<Intent>,request: Any?){
             val intent = Intent(activity,cls)
+            if (request != null){
+                intent.putExtra(INTENT_STRING,Gson().toJson(request))
+            }
 
             activityResultLauncher.launch(intent)
         }

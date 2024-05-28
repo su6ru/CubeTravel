@@ -9,5 +9,10 @@ class CubeTravelConfig{
         const val COUNT_EVERY_PAGE_DATA = 30
         /** API 預設初始頁碼 */
         const val PAGE_DEFAULT = "1"
+
+        /** 預設語系設定 */
+        const val DEFAULT_LANGUAGE_LANGUAGE = "正體中文"
+        const val DEFAULT_LANGUAGE_VALUE = "zh-tw"
+        const val DEFAULT_LANGUAGE_IMAGE = "ic_tw"
     }
 }

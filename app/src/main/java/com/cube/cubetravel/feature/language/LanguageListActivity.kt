@@ -1,6 +1,8 @@
 package com.cube.cubetravel.feature.language
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ci.v1_ci_view.ui.listener.IOnOptionListener
@@ -21,8 +23,8 @@ class LanguageListActivity : CubeTravelActivity<NewsBean>() {
     // MARK:- ========================== Define
 
     companion object{
-        fun startActivity(activity: CubeTravelActivity<*>){
-            CIActivity.startActivity(activity,LanguageListActivity::class.java,null)
+        fun startActivity(activity: CubeTravelActivity<*>,activityResultLauncher: ActivityResultLauncher<Intent>){
+            CIActivity.startResultActivity(activity,LanguageListActivity::class.java,activityResultLauncher,null)
         }
 
     }
@@ -85,7 +87,9 @@ class LanguageListActivity : CubeTravelActivity<NewsBean>() {
 
     /** 觀察 當點擊 語言列表的item */
     fun onLanguageListItemClickObserve(value: LanguageBean){
-
+        CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean = value
+        setResult(RESULT_OK)
+        finish()
 
     }
 

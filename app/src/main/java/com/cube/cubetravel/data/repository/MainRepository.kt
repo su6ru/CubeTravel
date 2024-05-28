@@ -1,6 +1,7 @@
 package com.cube.cubetravel.data.repository
 
 import com.ci.v1_ci_view.ui.listener.IOnOptionListener
+import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.data.network.ITravelApiService
 import com.cube.cubetravel.data.network.call.TravelApiCall
@@ -50,5 +51,10 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
             .invoke()
             .getNewsList(language,begin,end,page)
             .enqueue(TravelApiCall(successListener,failListener,completeListener))
+    }
+    /** 取的當前語系 的 value  */
+    fun getSelectedLanguageValue(): String{
+        val languageBean = CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean
+        return languageBean.value
     }
 }

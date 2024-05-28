@@ -1,9 +1,13 @@
 package com.cube.cubetravel.feature.main
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +40,13 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
         mFragmentSettingBinding.viewmodel = mMainViewModel
         mFragmentSettingBinding.lifecycleOwner = this
 
+        mLanguageActivityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){
+            if (it.resultCode == RESULT_OK) {
+                onLanguageActivityResultEvent()
 
+            }
+        }
 
         //====================== Observe
         //onLanguageClickObserve
@@ -45,25 +55,31 @@ class SettingFragment: CIFragment(R.layout.fragment_setting) {
 
         }
 
+
     }
 
     // MARK: - ========================== Data
     /** DataBinding */
-    lateinit var mFragmentSettingBinding: FragmentSettingBinding
+    private lateinit var mFragmentSettingBinding: FragmentSettingBinding
     /** ViewModel */
-    val mMainViewModel: MainViewModel by lazy {
+    private val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
-
+    private lateinit var mLanguageActivityResultLauncher: ActivityResultLauncher<Intent>
     // MARK: - ========================== Event
-
+    /** 當從語言選擇返回 */
+    private fun onLanguageActivityResultEvent(){
+        //當觸發語言更換,重新讀取全部資料
+        mMainViewModel.reloadAllListData()
+    }
     // MARK:- ========================== Observe
     /** 觀察當前是否 點擊 語言 */
     private fun onLanguageClickObserve(boolean: Boolean) {
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
-                LanguageListActivity.startActivity(activity)
+                LanguageListActivity.startActivity(activity,mLanguageActivityResultLauncher)
+
             }
 
         }

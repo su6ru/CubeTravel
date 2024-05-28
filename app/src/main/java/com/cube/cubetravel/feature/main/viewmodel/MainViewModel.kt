@@ -106,6 +106,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
         }
 
     }
+
     /** 當 最新消息 Recyclerview 滑動到最頂部,觸發重新整理效果 */
     val mOnNewsListRefreshListener = object: IOnOptionListener<Void>{
         override fun onExecute(option: Void?) {
@@ -177,7 +178,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
     fun callGetAttractionsList(page: String){
         mIsLoadingLiveData.value = true
 
-        mainRepository.callGetAttractionsList("zh-tw"
+        mainRepository.callGetAttractionsList(mainRepository.getSelectedLanguageValue()
             ,null
             ,null
             ,null
@@ -235,7 +236,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
         mIsLoadingLiveData.value = true
 
-        mainRepository.callGetNewsList("zh-tw"
+        mainRepository.callGetNewsList(mainRepository.getSelectedLanguageValue()
             ,null
             ,null
             ,page
@@ -299,5 +300,13 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
         mNewsListNowPage = "1"
 
+    }
+    /** 重置 全部資料 資料 */
+    fun reloadAllListData(){
+        resetAttractionsData()
+        callGetAttractionsList(CubeTravelConfig.PAGE_DEFAULT)
+
+        resetNewsData()
+        callGetNewsList(CubeTravelConfig.PAGE_DEFAULT)
     }
 }
