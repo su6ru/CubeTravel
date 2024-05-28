@@ -28,14 +28,18 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="6dp"/>
+            <!-- 分隔線 -->
+            <View
+                style="@style/Line"
+                android:layout_marginTop="6dp"
+                android:layout_height="1dp"/>
             <!-- 景點 & 最新消息 & 收藏 -->
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@color/black">
+                android:background="#50F8F4E1">
                 <!-- 景點 -->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
                     style="@style/MainBottomTabStyle"
