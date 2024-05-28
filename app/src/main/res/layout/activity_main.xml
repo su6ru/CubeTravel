@@ -10,10 +10,10 @@
     </data>
     <!-- 最外層layout -->
     <FrameLayout
+        style="@style/BaseActivityLayoutStyle"
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_morning_sky">
+        android:layout_height="match_parent">
         <!-- 全內容 layout -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -30,19 +30,19 @@
                 android:layout_marginTop="6dp"/>
             <!-- 分隔線 -->
             <View
-                style="@style/Line"
+                style="@style/BottomTabLine"
                 android:layout_marginTop="6dp"
                 android:layout_height="1dp"/>
             <!-- 景點 & 最新消息 & 收藏 -->
             <RadioGroup
+                style="@style/MainBottomTabBackgroundStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="#50F8F4E1">
+                android:gravity="center_vertical">
                 <!-- 景點 -->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
-                    style="@style/MainBottomTabStyle"
+                    style="@style/MainBottomTabButtonStyle"
                     android:id="@+id/radiobutton_attractions"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
                 <!--最新消息-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
-                    style="@style/MainBottomTabStyle"
+                    style="@style/MainBottomTabButtonStyle"
                     android:id="@+id/radiobutton_news"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
                 <!-- 收藏-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
-                    style="@style/MainBottomTabStyle"
+                    style="@style/MainBottomTabButtonStyle"
                     android:id="@+id/radiobutton_attractions_collection"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     app:onCheckedChanged="@{viewmodel.mOnCheckedChangeListener}"/>
                 <!-- 設定-->
                 <com.ci.v1_ci_view.ui.view.radiobutton.CIRadioButton
-                    style="@style/MainBottomTabStyle"
+                    style="@style/MainBottomTabButtonStyle"
                     android:id="@+id/radiobutton_setting"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

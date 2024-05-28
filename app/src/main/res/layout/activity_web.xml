@@ -10,10 +10,10 @@
     </data>
     <!-- 最外層layout -->
     <FrameLayout
+        style="@style/BaseActivityLayoutStyle"
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_morning_sky">
+        android:layout_height="match_parent">
         <!-- 全內容 layout -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
