@@ -91,5 +91,37 @@ class AttractionsBean {
     /** 預計顯示的第一張圖片url取得 */
     var firstImageUrl: String? = null
         get() = imagesBeanList?.firstOrNull()?.src
-
+    // 複製
+    fun copy(source: AttractionsBean): AttractionsBean {
+        return AttractionsBean().apply {
+            id = source.id
+            name = source.name
+            nameZh = source.nameZh
+            openStatus = source.openStatus
+            introduction = source.introduction
+            openTime = source.openTime
+            zipcode = source.zipcode
+            distric = source.distric
+            address = source.address
+            tel = source.tel
+            fax = source.fax
+            email = source.email
+            months = source.months
+            nlat = source.nlat
+            elong = source.elong
+            officialSite = source.officialSite
+            facebook = source.facebook
+            ticket = source.ticket
+            remind = source.remind
+            staytime = source.staytime
+            modified = source.modified
+            url = source.url
+            categoryBeanList = source.categoryBeanList?.toMutableList()
+            targetBeanList = source.targetBeanList?.toMutableList()
+            serviceBeanList = source.serviceBeanList?.toMutableList()
+            imagesBeanList = source.imagesBeanList?.toMutableList()
+            isCollection = source.isCollection
+            firstImageUrl = source.firstImageUrl
+        }
+    }
 }

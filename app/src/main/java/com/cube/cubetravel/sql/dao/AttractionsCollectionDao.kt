@@ -15,11 +15,11 @@ interface AttractionsCollectionDao {
     suspend fun insert(newsCollection: AttractionsCollectionTable)
 
     /** 取得 全部的 景點收藏*/
-    @Query("SELECT * FROM attractions_collection_table ORDER BY id DESC, id DESC")
+    @Query("SELECT * FROM attractions_collection_table ORDER BY id DESC")
     fun getAllTableList(): Flow<List<AttractionsCollectionTable>>
     /** 透過 景點資料id(AttractionsBean的id) 搜尋 景點收藏  */
-    @Query("SELECT attractions_item_id  FROM attractions_collection_table WHERE attractions_item_id = :attractionsItemId LIMIT 1")
-    fun getTableById(attractionsItemId: Int): AttractionsCollectionTable?
+    @Query("SELECT *  FROM attractions_collection_table WHERE attractions_item_id = :attractionsItemId LIMIT 1")
+    fun getTableById(attractionsItemId: Int?): AttractionsCollectionTable?
     /** 刪除 景點收藏 */
     @Delete
     suspend fun deleteTable(attractionsCollectionTable: AttractionsCollectionTable)

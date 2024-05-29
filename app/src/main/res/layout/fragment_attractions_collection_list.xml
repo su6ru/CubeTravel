@@ -12,18 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!-- SwipeRefreshLayout -->
-        <com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout
-            android:id="@+id/swipe_refresh_layout"
+        <!-- 收藏景點列表用 RecyclerView -->
+        <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:onRefreshed="@{viewmodel.mOnAttractionsCollectionListRefreshListener}">
-            <!-- 景點列表用 RecyclerView -->
-            <com.ci.v1_ci_view.ui.view.recyclerview.CIRecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout>
+            android:layout_height="match_parent"/>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

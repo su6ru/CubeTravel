@@ -14,88 +14,85 @@ import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.data.beans.AttractionsBean
+import com.cube.cubetravel.data.beans.AttractionsCollectionBean
+import com.cube.cubetravel.databinding.FragmentAttractionsCollectionListBinding
 import com.cube.cubetravel.databinding.FragmentAttractionsListBinding
+import com.cube.cubetravel.feature.attractions.AttractionsContentActivity
+import com.cube.cubetravel.feature.main.adapter.AttractionsCollectionListAdapter
 import com.cube.cubetravel.feature.main.adapter.AttractionsListAdapter
+import com.cube.cubetravel.feature.main.diffcallback.AttractionsCollectionListDiffCallback
 import com.cube.cubetravel.feature.main.diffcallback.AttractionsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 
-/** 景點收藏 列表 Fragment */
+/** 收藏景點 列表 Fragment */
 class AttractionsCollectionListFragment: CIFragment(R.layout.fragment_attractions_collection_list) {
     // MARK:- ========================== Life
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        mAttractionsListFragmentBinding = FragmentAttractionsListBinding.inflate(layoutInflater)
+        mFragmentAttractionsCollectionListBinding = FragmentAttractionsCollectionListBinding.inflate(layoutInflater)
 
-        return mAttractionsListFragmentBinding.root
+        return mFragmentAttractionsCollectionListBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //====================== DataBinding
-        mAttractionsListFragmentBinding.viewmodel = mMainViewModel
-        mAttractionsListFragmentBinding.lifecycleOwner = this
+        mFragmentAttractionsCollectionListBinding.viewmodel = mMainViewModel
+        mFragmentAttractionsCollectionListBinding.lifecycleOwner = this
 
         //====================== recyclerview
-        mAttractionsListFragmentBinding.recyclerview.layoutManager = LinearLayoutManager(
-            CubeTravelApplication.INSTANCE)
-        mAttractionsListAdapter = AttractionsListAdapter(AttractionsListDiffCallback(),mOnListItemClick,mOnCheckedChangeListener)
-        mAttractionsListFragmentBinding.recyclerview.adapter = mAttractionsListAdapter
+        mFragmentAttractionsCollectionListBinding.recyclerview.layoutManager = LinearLayoutManager(CubeTravelApplication.INSTANCE)
+        mAttractionsCollectionListAdapter = AttractionsCollectionListAdapter(AttractionsCollectionListDiffCallback(),mOnListItemClick,mOnCheckedChangeListener)
+        mFragmentAttractionsCollectionListBinding.recyclerview.adapter = mAttractionsCollectionListAdapter
 
         //====================== Observe
-        //onAttractionsBeanListObserve
-        mMainViewModel.mAttractionsBeanListLiveData.observe(viewLifecycleOwner,object :
-            Observer<List<AttractionsBean>> {
-            override fun onChanged(value: List<AttractionsBean>) {
-                onAttractionsBeanListObserve(value)
-            }
-        })
+        //onAttractionsCollectionBeanListObserve
+        mMainViewModel.mAttractionsCollectionBeanListLiveData.observe(viewLifecycleOwner){
+            onAttractionsCollectionBeanListObserve(it)
+        }
         //onAttractionsListItemClickObserve
-        mMainViewModel.mAttractionsListItemClickLiveData.observe(viewLifecycleOwner,object :
-            Observer<AttractionsBean> {
-            override fun onChanged(value: AttractionsBean) {
-                onAttractionsListItemClickObserve(value)
-            }
-        })
+        mMainViewModel.mAttractionsCollectionListItemClickLiveData.observe(viewLifecycleOwner){
+            onAttractionsCollectionListItemClickObserve(it)
+        }
 
     }
 
     // MARK: - ========================== Data
     /** DataBinding */
-    lateinit var mAttractionsListFragmentBinding: FragmentAttractionsListBinding
+    private lateinit var mFragmentAttractionsCollectionListBinding: FragmentAttractionsCollectionListBinding
     /** ViewModel */
-    val mMainViewModel: MainViewModel by lazy {
+    private val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
     /** AttractionsListAdapter */
-    lateinit var mAttractionsListAdapter : AttractionsListAdapter
+    private lateinit var mAttractionsCollectionListAdapter : AttractionsCollectionListAdapter
     // MARK: - ========================== Event
     /** 點擊 景點列表 的 任一 itemView */
-    val mOnListItemClick : IOnOptionListener<AttractionsBean> = object :
-        IOnOptionListener<AttractionsBean> {
-        override fun onExecute(option: AttractionsBean?) {
-            mMainViewModel.onAttractionsListItemClick(option!!)
+    private val mOnListItemClick : IOnOptionListener<AttractionsCollectionBean> = object :
+        IOnOptionListener<AttractionsCollectionBean> {
+        override fun onExecute(option: AttractionsCollectionBean?) {
+            mMainViewModel.onAttractionsCollectionListItemClick(option!!)
         }
 
     }
     /** 點擊 景點列表 的 收藏 */
-    val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :
-        IOnOptionCheckedChangedListener<AttractionsBean> {
-        override fun onExecute(option: AttractionsBean, isChecked: Boolean) {
-            mMainViewModel.onAttractionsListCheckedChangeListener(option,isChecked)
+    private val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsCollectionBean> = object :IOnOptionCheckedChangedListener<AttractionsCollectionBean> {
+        override fun onExecute(option: AttractionsCollectionBean, isChecked: Boolean) {
+            mMainViewModel.onAttractionsCollectionListFavoriteCheckedChangeListener(option,isChecked)
         }
     }
     // MARK:- ========================== Observe
     /** 觀察 景點列表資料 發生變化 */
-    fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
-        mAttractionsListAdapter.submitList(value)
+    private fun onAttractionsCollectionBeanListObserve(value: List<AttractionsCollectionBean>){
+        mAttractionsCollectionListAdapter.submitList(value)
     }
 
     /** 觀察 當點擊 景點列表的item */
-    fun onAttractionsListItemClickObserve(value: AttractionsBean){
+    private fun onAttractionsCollectionListItemClickObserve(value: AttractionsCollectionBean){
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
-
+           //     AttractionsContentActivity.startActivity(activity,value)
             }
 
         }

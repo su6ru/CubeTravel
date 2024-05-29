@@ -18,4 +18,12 @@ class AttractionsCollectionBean {
     var url: String? = null
     /** 圖片資料 */
     var imagesBeanList: MutableList<ImagesBean>? = null
+
+
+
+    /** 是否收藏 */
+    var isCollection = false
+    /** 預計顯示的第一張圖片url取得 */
+    var firstImageUrl: String? = null
+        get() = imagesBeanList?.firstOrNull()?.src
 }

@@ -65,6 +65,27 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
         val languageBean = CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean
         return languageBean.value
     }
+
+    /** 檢查db 此景點資料是否已收藏 */
+    fun isAttractionsCollectionDataExist(id: Int): Boolean{
+
+        val attractionsCollectionTable = attractionsCollectionDao.getTableById(id)
+
+        return attractionsCollectionTable != null
+    }
+    /** 檢查db 此景點資料 圖片 是否已收藏 */
+    fun isAttractionsCollectionImageUrlDataExist(attractionsItemId: Int,imagesBean: ImagesBean): Boolean{
+        //src
+        val src = imagesBean.src
+        //subject
+        val subject = imagesBean.subject
+        //ext
+        val ext = imagesBean.ext
+
+        val attractionsCollectionTable = attractionsCollectionImageUrlDao.getTableByAllParam(attractionsItemId,src,subject,ext)
+
+        return attractionsCollectionTable != null
+    }
     /** 新增 景點收藏 */
     suspend fun insertAttractionsCollection(attractionsBean: AttractionsBean){
 
@@ -81,17 +102,23 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
     /** 新增 景點收藏 的 圖片資料 */
     suspend fun insertAttractionsCollectionImageUrl(attractionsBean: AttractionsBean){
         val imagesBeanList = attractionsBean.imagesBeanList
+        //如果此資料沒有 id 則不存入
+        val attractionsItemId = attractionsBean.id ?: return
         //如果此資料沒有圖片則不存入
         if (imagesBeanList.isNullOrEmpty()){
             return
         }
         val attractionsCollectionImageUrlTableList = mutableListOf<AttractionsCollectionImageUrlTable>()
         for (imagesBean in imagesBeanList){
+            //若db已有此資料則跳過
+            if (isAttractionsCollectionImageUrlDataExist(attractionsItemId,imagesBean)){
+                continue
+            }
             val attractionsCollectionImageUrlTable = AttractionsCollectionImageUrlTable(
-                attractions_item_id = attractionsBean.id
-                , src = attractionsBean.name
-                , subject = attractionsBean.introduction
-                , ext = attractionsBean.openTime)
+                attractions_item_id = attractionsItemId
+                , src = imagesBean.src
+                , subject = imagesBean.subject
+                , ext = imagesBean.ext)
             attractionsCollectionImageUrlTableList.add(attractionsCollectionImageUrlTable)
         }
 
@@ -130,6 +157,7 @@ class MainRepository(private val attractionsCollectionDao: AttractionsCollection
                 this.address = attractionsCollectionTable.address
                 this.url = attractionsCollectionTable.url
                 this.imagesBeanList = mergeImagesBeanList
+                this.isCollection = true
             }
             attractionsBeanList.add(attractionsCollectionBean)
         }

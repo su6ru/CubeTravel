@@ -19,6 +19,7 @@ import com.cube.cubetravel.feature.attractions.AttractionsContentActivity
 import com.cube.cubetravel.feature.main.adapter.AttractionsListAdapter
 import com.cube.cubetravel.feature.main.diffcallback.AttractionsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
+import okhttp3.internal.notify
 
 /** 景點 列表 Fragment */
 class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
@@ -54,7 +55,9 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
                 onAttractionsListItemClickObserve(value)
             }
         })
-
+        mMainViewModel.mPositionLiveData.observe(viewLifecycleOwner){
+            onAttractionsIsCollectionChangeObserve(it)
+        }
     }
 
     // MARK: - ========================== Data
@@ -78,7 +81,7 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
     /** 點擊 景點列表 的 收藏 */
     val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :IOnOptionCheckedChangedListener<AttractionsBean> {
         override fun onExecute(option: AttractionsBean, isChecked: Boolean) {
-            mMainViewModel.onAttractionsListCheckedChangeListener(option,isChecked)
+            mMainViewModel.onAttractionsListFavoriteCheckedChangeListener(option,isChecked)
         }
     }
     // MARK:- ========================== Observe
@@ -86,7 +89,9 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
     fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
         mAttractionsListAdapter.submitList(value)
     }
-
+    fun onAttractionsIsCollectionChangeObserve(position: Int){
+        mAttractionsListAdapter.notifyItemChanged(position)
+    }
     /** 觀察 當點擊 景點列表的item */
     fun onAttractionsListItemClickObserve(value: AttractionsBean){
         val activity = getMyActivity()
