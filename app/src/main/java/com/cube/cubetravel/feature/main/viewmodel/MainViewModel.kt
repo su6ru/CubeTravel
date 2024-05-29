@@ -186,6 +186,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
     }
     // MARK:- ========================== Method
+
     /** 呼叫 取得 景點列表 */
     fun callGetAttractionsList(page: String){
         mIsLoadingLiveData.value = true

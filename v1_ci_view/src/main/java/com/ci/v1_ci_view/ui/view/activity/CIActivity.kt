@@ -48,11 +48,8 @@ abstract class CIActivity<T> : AppCompatActivity() {
     /** 取得activity最外圍的主layout */
     abstract fun getSupperLayout():FrameLayout
     // MARK:- ========================== Data
-    /** Loading 狀態的count ，當大於0代表Loading中 */
-    private var mLoadingAlertCount = 0
-    fun isLoading() : Boolean{
-        return mLoadingAlertCount != 0
-    }
+
+
     /** 設定是否顯示Loading */
     fun setLoading(enable: Boolean){
         if (enable){
@@ -77,13 +74,7 @@ abstract class CIActivity<T> : AppCompatActivity() {
     /** 顯示Loading標誌 */
     private fun showLoadingAlert(){
 
-        mLoadingAlertCount += 1
-
         Log.d("loading", "show")
-
-        if (mLoadingAlertCount == 0) {
-            return
-        }
 
         if (mLoadingAlert == null) {
             mLoadingAlert = CILoadingAlert(this)
@@ -98,13 +89,8 @@ abstract class CIActivity<T> : AppCompatActivity() {
     }
     /** 隱藏Loading標誌 */
     private fun hideLoadingAlert(){
-        mLoadingAlertCount -= 1
 
         Log.d("loading", "hide")
-
-        if (mLoadingAlertCount != 0) {
-            return
-        }
 
         if (mLoadingAlert == null) {
             return
