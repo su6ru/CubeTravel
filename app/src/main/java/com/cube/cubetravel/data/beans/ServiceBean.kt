@@ -1,7 +1,7 @@
 package com.cube.cubetravel.data.beans
 
 import com.google.gson.annotations.SerializedName
-/** 服務設施 資料 */
+/** 服務設施 model */
 class ServiceBean {
     /** 設施 id */
     @SerializedName("id")

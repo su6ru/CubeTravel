@@ -1,5 +1,5 @@
 package com.cube.cubetravel.data.beans
-
+/** 語系 model */
 class LanguageBean {
     /** 語言 */
     var language: String = ""

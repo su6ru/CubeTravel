@@ -20,5 +20,4 @@ data class AttractionsCollectionTable (
     , val openTime: String?
     , val address: String?
     , val url: String?
-
 )

@@ -1,7 +1,7 @@
 package com.cube.cubetravel.data.beans
 
 import com.google.gson.annotations.SerializedName
-/** 最新消息列表用的資料 */
+/** 最新消息列表資料 model */
 class NewsBean {
 
     /** 資料id */

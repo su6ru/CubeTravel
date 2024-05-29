@@ -16,8 +16,9 @@ class MainViewModelFactory(private val application: Application): ViewModelProvi
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
             val attractionsCollectionDao = DatabaseManager.getDatabase(application).attractionsCollectionDao()
+            val attractionsCollectionImageUrlDao = DatabaseManager.getDatabase(application).attractionsCollectionImageUrlDao()
 
-            val repository = MainRepository(attractionsCollectionDao)
+            val repository = MainRepository(attractionsCollectionDao,attractionsCollectionImageUrlDao)
             return MainViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

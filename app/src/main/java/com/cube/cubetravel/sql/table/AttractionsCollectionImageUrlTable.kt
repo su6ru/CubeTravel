@@ -6,14 +6,12 @@ import androidx.room.PrimaryKey
  * @param id id
  * @param attractions_item_id 此景點資料於API的原始ID
  * @param src 圖片url
- * @param introduction 地點內容說明
- * @param openTime 開放時間說明
- * @param address 地址
- * @param url 原始網頁
  * */
-@Entity(tableName = "attractions_collection_table")
+@Entity(tableName = "attractions_collection_image_url_table")
 data class AttractionsCollectionImageUrlTable (
     @PrimaryKey(autoGenerate = true) val id: Int = 0
     , val attractions_item_id: Int?
     , val src: String?
+    , val subject: String?
+    , val ext: String?
 )

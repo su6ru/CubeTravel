@@ -1,7 +1,7 @@
 package com.cube.cubetravel.data.beans
 
 import com.google.gson.annotations.SerializedName
-/** 圖片 資料 */
+/** 圖片 資料 model */
 class ImagesBean {
     /** 圖片 URL */
     @SerializedName("src")

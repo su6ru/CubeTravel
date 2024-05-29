@@ -1,22 +1,11 @@
 package com.cube.cubetravel.feature.language.viewmodel
 
-import android.content.res.Resources
-import android.widget.CompoundButton
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.ci.v1_ci_view.ui.listener.IOnOptionListener
-import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
-import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.data.beans.LanguageBean
-import com.cube.cubetravel.data.beans.NewsBean
-import com.cube.cubetravel.data.beans.WebBean
-import com.cube.cubetravel.data.config.CubeTravelConfig
-import com.cube.cubetravel.data.network.drawer.ApiBase
 import com.cube.cubetravel.data.repository.LanguageListRepository
-import com.cube.cubetravel.data.repository.MainRepository
-import com.cube.cubetravel.data.repository.NewsContentRepository
 
 /** LanguageListActivity相關的  ViewModel*/
 class LanguageListViewModel(private val languageListRepository: LanguageListRepository): BaseViewModel(),DefaultLifecycleObserver {
