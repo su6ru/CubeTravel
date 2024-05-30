@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.cube.cubetravel.feature.attractions_collection.viewmodel.AttractionsCollectionContentViewModel" />
+
+
+
+    </data>
+    <!-- 最外層layout -->
+    <FrameLayout
+        style="@style/BaseActivityLayoutStyle"
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- 全內容 layout -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- 上方toolbar區塊 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!-- toolbar -->
+                <com.ci.v1_ci_view.ui.view.toolbar.CIToolbar
+                    style="@style/ToolbarStyle"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title_text="@string/n_attractions_collection"
+                    app:showLeftImage="true"/>
+                <!-- 導航 -->
+                <com.ci.v1_ci_view.ui.view.textview.CITextView
+                    style="@style/ToolbarOpenMapStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/n_location"
+                    android:onClick="@{()-> viewmodel.onMapClick()}"/>
+            </FrameLayout>
+
+            <!-- 內容 區塊 -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="12dp">
+                <!-- 內容 layout -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_listview_layout">
+                    <!-- 前往網頁 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/GoToWebTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@string/n_go_to_web"
+                        android:onClick="@{() -> viewmodel.onGoToWebClick()}"/>
+                    <!-- 標題 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentTitleTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewmodel.mAttractionsCollectionBeanLiveData.name}"
+                        tools:text="標題"/>
+                    <!--圖片 Banner-->
+                    <com.ci.v1_ci_view.ui.view.banner.CIMultipleImageBanner
+                        android:id="@+id/banner_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <!-- 內容 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentNormalTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@={viewmodel.mAttractionsCollectionBeanLiveData.introduction}"
+                        tools:text="內容說明"/>
+
+                    <!-- 開放時間說明 title -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentOpenTimeTextStyle"
+                        android:id="@+id/text_opentime_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/title_open_time_directions"
+                        android:visibility="@{viewmodel.mAttractionsCollectionBeanLiveData.openTime == null || viewmodel.mAttractionsCollectionBeanLiveData.openTime.isEmpty() ? View.GONE : View.VISIBLE}"
+                        tools:text="開放時間說明:"/>
+                    <!-- 開放時間說明 -->
+                    <com.ci.v1_ci_view.ui.view.textview.CITextView
+                        style="@style/AttractionsContentOpenTimeTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@={viewmodel.mAttractionsCollectionBeanLiveData.openTime}"
+                        tools:text="開放時間說明"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </ScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+</layout>

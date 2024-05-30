@@ -13,15 +13,11 @@ import com.ci.v1_ci_view.ui.view.fragment.CIFragment
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
 import com.cube.cubetravel.custom.application.CubeTravelApplication
-import com.cube.cubetravel.data.beans.AttractionsBean
 import com.cube.cubetravel.data.beans.AttractionsCollectionBean
 import com.cube.cubetravel.databinding.FragmentAttractionsCollectionListBinding
-import com.cube.cubetravel.databinding.FragmentAttractionsListBinding
-import com.cube.cubetravel.feature.attractions.AttractionsContentActivity
+import com.cube.cubetravel.feature.attractions_collection.AttractionsCollectionContentActivity
 import com.cube.cubetravel.feature.main.adapter.AttractionsCollectionListAdapter
-import com.cube.cubetravel.feature.main.adapter.AttractionsListAdapter
 import com.cube.cubetravel.feature.main.diffcallback.AttractionsCollectionListDiffCallback
-import com.cube.cubetravel.feature.main.diffcallback.AttractionsListDiffCallback
 import com.cube.cubetravel.feature.main.viewmodel.MainViewModel
 
 /** 收藏景點 列表 Fragment */
@@ -92,7 +88,7 @@ class AttractionsCollectionListFragment: CIFragment(R.layout.fragment_attraction
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){
-           //     AttractionsContentActivity.startActivity(activity,value)
+                AttractionsCollectionContentActivity.startActivity(activity,value)
             }
 
         }

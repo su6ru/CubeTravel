@@ -33,6 +33,9 @@
             android:name=".feature.attractions.AttractionsContentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
+            android:name=".feature.attractions_collection.AttractionsCollectionContentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
             android:name=".feature.language.LanguageListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity

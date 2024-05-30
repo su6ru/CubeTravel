@@ -220,7 +220,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                     mPositionLiveData.value = position
                 }
 
-                /*
+                /*  更新 景點列表,這也可以,但這是大範圍更新,比較耗效能
                 val uiAttractionsBeanList = mAttractionsBeanListLiveData.value
                 val newAttractionsBeanList = mutableListOf<AttractionsBean>()
                 if (uiAttractionsBeanList != null) {
