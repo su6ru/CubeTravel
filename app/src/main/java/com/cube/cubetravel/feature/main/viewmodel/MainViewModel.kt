@@ -297,6 +297,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                         }
                         willUseAttractionsBeanList.addAll(nowUIAttractionsBeanList)
                     }
+                    mIsLoadingLiveData.value = true
                     viewModelScope.launch(Dispatchers.IO){
                         //從API取得的資料List
                         var apiAttractionsBeanList = option?.data
@@ -319,6 +320,8 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
 
                         }
                     }
+                    mIsLoadingLiveData.value = false
+
                 }
 
             },object: IOnOptionListener<String>{
