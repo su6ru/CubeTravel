@@ -14,7 +14,10 @@ class AppManager(context: Context) {
 
     object JsonKey {
         const val LanguageBean = "LanguageBean"
+        const val UiMode = "UiMode"
+
     }
+    /** 語系 */
     var mLanguageBean: LanguageBean
         get() {
             val value = mSharedPreferences?.getString(JsonKey.LanguageBean, null)
@@ -33,6 +36,12 @@ class AppManager(context: Context) {
         set(value) {
             mSharedPreferences?.edit()?.putString(JsonKey.LanguageBean, Gson().toJson(value))?.apply()
         }
-
-
+    /** 用於紀錄當前的顏色模式 */
+    var mUiMode: String?
+        get() {
+            return mSharedPreferences?.getString(JsonKey.UiMode, null)
+        }
+        set(value) {
+            mSharedPreferences?.edit()?.putString(JsonKey.UiMode, value)?.apply()
+        }
 }

@@ -182,7 +182,6 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
             }
         }
     }
-    val mPositionLiveData = MutableLiveData<Int>()
 
     /** 當點擊 收藏景點列表的 收藏 */
     fun onAttractionsCollectionListFavoriteCheckedChangeListener(attractionsCollectionBean: AttractionsCollectionBean,isChecked: Boolean){
@@ -203,24 +202,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                 loadAttractionsCollection()
 
 
-                //更新 景點列表
-                val uiAttractionsBeanList = mAttractionsBeanListLiveData.value
-                var position = -1
-                for (i in 0.. uiAttractionsBeanList?.size!!) {
-                    if (uiAttractionsBeanList[i].id == attractionsItemId) {
-                        uiAttractionsBeanList[i].isCollection = false
-                        position = i
-                        break
-                    }
-                }
-                if (position == -1){
-                    return@launch
-                }
-                viewModelScope.launch(Dispatchers.Main) {
-                    mPositionLiveData.value = position
-                }
-
-                /*  更新 景點列表,這也可以,但這是大範圍更新,比較耗效能
+                //  更新 景點列表,這也可以,但這是大範圍更新,比較耗效能
                 val uiAttractionsBeanList = mAttractionsBeanListLiveData.value
                 val newAttractionsBeanList = mutableListOf<AttractionsBean>()
                 if (uiAttractionsBeanList != null) {
@@ -238,7 +220,7 @@ class MainViewModel(private val mainRepository: MainRepository): BaseViewModel()
                         mAttractionsBeanListLiveData.value = newAttractionsBeanList
                     }
 
-                }*/
+                }
             }
         }
     }

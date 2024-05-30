@@ -9,7 +9,7 @@ import com.cube.cubetravel.data.repository.AttractionsContentRepository
 import com.cube.cubetravel.feature.attractions.viewmodel.AttractionsContentViewModel
 import com.cube.cubetravel.feature.attractions_collection.viewmodel.AttractionsCollectionContentViewModel
 
-/** AttractionsContentViewModel  專用的 Factory */
+/** AttractionsCollectionContentViewModel  專用的 Factory */
 
 @Suppress("UNCHECKED_CAST")
 class AttractionsCollectionContentViewModelFactory(private val intentAttractionsCollectionBean: AttractionsCollectionBean?): ViewModelProvider.Factory {

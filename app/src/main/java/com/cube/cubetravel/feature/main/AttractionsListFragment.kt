@@ -55,9 +55,7 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
                 onAttractionsListItemClickObserve(value)
             }
         })
-        mMainViewModel.mPositionLiveData.observe(viewLifecycleOwner){
-            onAttractionsIsCollectionChangeObserve(it)
-        }
+
     }
 
     // MARK: - ========================== Data
@@ -89,9 +87,7 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
     fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
         mAttractionsListAdapter.submitList(value)
     }
-    fun onAttractionsIsCollectionChangeObserve(position: Int){
-        mAttractionsListAdapter.notifyItemChanged(position)
-    }
+
     /** 觀察 當點擊 景點列表的item */
     fun onAttractionsListItemClickObserve(value: AttractionsBean){
         val activity = getMyActivity()

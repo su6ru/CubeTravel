@@ -1,13 +1,17 @@
 package com.cube.cubetravel.feature.main
 
+import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.ci.v1_ci_view.ui.util.CIFragmentUtil
 import com.ci.v1_ci_view.ui.util.CIPermissionsUtil
 import com.cube.cubetravel.R
 import com.cube.cubetravel.custom.activity.CubeTravelActivity
+import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.custom.viewmodel.BaseViewModel
 import com.cube.cubetravel.data.factory.MainViewModelFactory
 import com.cube.cubetravel.databinding.ActivityMainBinding
@@ -36,9 +40,12 @@ class MainActivity : CubeTravelActivity<Void>() {
     override fun mBaseViewModel(): BaseViewModel {
         return mMainViewModel
     }
+
+
     // MARK:- ========================== Life
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //====================== DataBinding
         setContentView(mActivityMainBinding.root)
         mActivityMainBinding.viewmodel = mMainViewModel

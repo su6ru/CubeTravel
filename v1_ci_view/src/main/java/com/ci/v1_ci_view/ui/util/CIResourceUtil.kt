@@ -1,6 +1,7 @@
 package com.ci.v1_ci_view.ui.util
 
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.RawRes
@@ -40,6 +41,11 @@ class CIResourceUtil {
         /** 取得PX  */
         fun getPx(unit: Int, `val`: Float): Float {
             return TypedValue.applyDimension(unit, `val`, Resources.getSystem().displayMetrics)
+        }
+        /** 目前是否為深色模式 */
+        fun isNightModeActive(context: Context): Boolean {
+            val nightModeFlags = context.getResources().getConfiguration().uiMode and Configuration.UI_MODE_NIGHT_MASK
+            return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
         }
     }
 }
