@@ -8,10 +8,18 @@
             type="com.cube.cubetravel.feature.main.viewmodel.MainViewModel" />
     </data>
     <!-- Fragment 內容 -->
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        <!-- 目前尚無資料 -->
+        <com.ci.v1_ci_view.ui.view.textview.CITextView
+            style="@style/NoDataTextStyle"
+            android:id="@+id/text_nodata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/n_nodata"
+            android:visibility="gone"/>
         <!-- SwipeRefreshLayout -->
         <com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
@@ -27,5 +35,5 @@
         </com.ci.v1_ci_view.ui.view.layout.CISwipeRefreshLayout>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 </layout>

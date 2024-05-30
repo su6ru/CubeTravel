@@ -11,6 +11,7 @@
     <string name="n_close">关闭</string>
     <string name="n_language">语言</string>
     <string name="n_set">设置</string>
+    <string name="n_nodata">目前尚无资料</string>
 
 
     <string name="msg_data_abnormal">数据异常</string>

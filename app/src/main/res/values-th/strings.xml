@@ -11,6 +11,7 @@
     <string name="n_close">ปิด</string>
     <string name="n_language">ภาษา</string>
     <string name="n_set">ตั้งค่า</string>
+    <string name="n_nodata">ขณะนี้ไม่มีข้อมูล</string>
 
     <string name="msg_data_abnormal">ข้อมูลผิดปกติ</string>
     <string name="msg_address_not_provided">ไม่ได้ระบุที่อยู่</string>

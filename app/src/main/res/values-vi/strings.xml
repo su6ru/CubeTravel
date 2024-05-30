@@ -11,6 +11,7 @@
     <string name="n_close">Đóng</string>
     <string name="n_language">Ngôn ngữ</string>
     <string name="n_set">Cài đặt</string>
+    <string name="n_nodata">Hiện không có dữ liệu</string>
 
     <string name="msg_data_abnormal">Dữ liệu bất thường</string>
     <string name="msg_address_not_provided">Không cung cấp địa chỉ</string>

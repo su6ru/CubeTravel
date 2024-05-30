@@ -55,20 +55,7 @@ class WebActivity : CubeTravelActivity<WebBean>() {
         }
         // 設置 WebViewClient
         mActivityWebContentBinding.webview.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                onPageStartedListener()
-
-            }
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                onFinishedListener()
-            }
-            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                super.onReceivedError(view, request, error)
-                onErrorListener()
-            }
-
+            
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 view?.loadUrl(url ?: "")
                 return true
@@ -102,19 +89,7 @@ class WebActivity : CubeTravelActivity<WebBean>() {
             super.onBackPressed()
         }
     }
-    /** 當webview 開始載入 */
-    private fun onPageStartedListener(){
-        mWebViewModel.onWebViewPageStartedListener()
-    }
-    /** 當webview 載入結束 */
-    private fun onFinishedListener(){
-        mWebViewModel.onWebViewFinishedListener()
-    }
-    /** 當webview 載入失敗 */
-    private fun onErrorListener(){
-        mWebViewModel.onWebViewErrorListener()
 
-    }
     // MARK:- ========================== Observe
     /** 觀察 WebBean資料是否變化 */
     private fun onWebBeanChanged(webBean: WebBean){

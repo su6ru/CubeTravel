@@ -80,6 +80,11 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
     // MARK:- ========================== Observe
     /** 觀察 最新消息列表資料 發生變化 */
     private fun onNewsBeanListObserve(value: List<NewsBean>){
+        if (value.isEmpty()){
+            mFragmentNewsListBinding.textNodata.visibility = View.VISIBLE
+        }else{
+            mFragmentNewsListBinding.textNodata.visibility = View.GONE
+        }
         mNewsListAdapter.submitList(value)
     }
 

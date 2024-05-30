@@ -11,6 +11,7 @@
     <string name="n_close">閉じる</string>
     <string name="n_language">言語</string>
     <string name="n_set">設定</string>
+    <string name="n_nodata">現在データがありません</string>
 
     <string name="msg_data_abnormal">データ異常</string>
     <string name="msg_address_not_provided">住所が提供されていません</string>

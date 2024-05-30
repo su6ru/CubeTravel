@@ -1,5 +1,5 @@
 package com.cube.cubetravel.data.config
-
+/** 專案Config */
 class CubeTravelConfig{
 
     companion object{

@@ -1,6 +1,9 @@
 package com.cube.cubetravel.data.network.call
 
+import android.content.res.Resources
 import com.ci.v1_ci_view.ui.listener.IOnOptionListener
+import com.cube.cubetravel.R
+import com.cube.cubetravel.custom.application.CubeTravelApplication
 import com.cube.cubetravel.data.network.data.BaseApiData
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -12,6 +15,7 @@ class TravelApiCall<T: BaseApiData.Response<*>>(
     private val successListener: IOnOptionListener<T>,
     private val failListener: IOnOptionListener<String>,
     private val completeListener: IOnOptionListener<Void>): Callback<T> {
+    private val mContext = CubeTravelApplication.INSTANCE.baseContext
     override fun onResponse(p0: Call<T>, p1: Response<T>) {
 
         if (p1.isSuccessful) {
@@ -20,7 +24,7 @@ class TravelApiCall<T: BaseApiData.Response<*>>(
         }else{
             var message = p1.message()
             if (message.isNullOrEmpty()){
-                message = "列表資料取得異常"
+                message = mContext.getString(R.string.msg_data_abnormal)
             }
             onCallFail(message)
         }
@@ -28,7 +32,7 @@ class TravelApiCall<T: BaseApiData.Response<*>>(
     override fun onFailure(p0: Call<T>, p1: Throwable) {
         var message = p1.message.toString()
         if (message.isEmpty()){
-            message = "列表資料取得異常"
+            message = mContext.getString(R.string.msg_data_abnormal)
         }
         onCallFail(message)
     }

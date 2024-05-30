@@ -81,6 +81,11 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
     // MARK:- ========================== Observe
     /** 觀察 景點列表資料 發生變化 */
     private fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
+        if (value.isEmpty()){
+            mAttractionsListFragmentBinding.textNodata.visibility = View.VISIBLE
+        }else{
+            mAttractionsListFragmentBinding.textNodata.visibility = View.GONE
+        }
         mAttractionsListAdapter.submitList(value)
     }
 

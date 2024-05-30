@@ -85,7 +85,11 @@
 
     </style>
 
-
+    <!-- 目前無資料 textview style -->
+    <style name="NoDataTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimens_big</item>
+    </style>
     <!-- 通用 Toolbar Style -->
     <style name="ToolbarStyle">
         <item name="title_text_color">@color/white</item>
@@ -105,6 +109,7 @@
     <style name="BottomTabLine" parent="Line">
         <item name="android:background">@color/black</item>
     </style>
+
     <!-- 分隔線 -->
     <style name="Line">
         <item name="android:layout_height">1dp</item>

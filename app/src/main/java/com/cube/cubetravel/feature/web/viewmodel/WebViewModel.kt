@@ -34,16 +34,7 @@ class WebViewModel(private val webRepository: WebRepository): BaseViewModel(),De
     val mWebBeanLiveData = MutableLiveData<WebBean>()
 
     // MARK:- ========================== Event
-    fun onWebViewPageStartedListener(){
-        mIsLoadingLiveData.value = true
-    }
-    fun onWebViewFinishedListener(){
-        mIsLoadingLiveData.value = false
 
-    }
-    fun onWebViewErrorListener(){
-        mIsLoadingLiveData.value = true
-    }
 
     // MARK:- ========================== Method
 

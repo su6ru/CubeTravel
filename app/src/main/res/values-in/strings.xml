@@ -11,6 +11,7 @@
     <string name="n_close">Tutup</string>
     <string name="n_language">Bahasa</string>
     <string name="n_set">Pengaturan</string>
+    <string name="n_nodata">Tidak ada data saat ini</string>
 
     <string name="msg_data_abnormal">Data Tidak Normal</string>
     <string name="msg_address_not_provided">Alamat Tidak Disediakan</string>

@@ -11,6 +11,7 @@
     <string name="n_close">닫기</string>
     <string name="n_language">언어</string>
     <string name="n_set">설정</string>
+    <string name="n_nodata">현재 데이터가 없습니다</string>
 
     <string name="msg_data_abnormal">데이터 이상</string>
     <string name="msg_address_not_provided">주소 미제공</string>
