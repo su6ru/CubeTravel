@@ -44,32 +44,28 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
 
         //====================== Observe
         //onAttractionsBeanListObserve
-        mMainViewModel.mAttractionsBeanListLiveData.observe(viewLifecycleOwner,object :Observer<List<AttractionsBean>>{
-            override fun onChanged(value: List<AttractionsBean>) {
-                onAttractionsBeanListObserve(value)
-            }
-        })
+        mMainViewModel.mAttractionsBeanListLiveData.observe(viewLifecycleOwner){
+            onAttractionsBeanListObserve(it)
+        }
         //onAttractionsListItemClickObserve
-        mMainViewModel.mAttractionsListItemClickLiveData.observe(viewLifecycleOwner,object :Observer<AttractionsBean>{
-            override fun onChanged(value: AttractionsBean) {
-                onAttractionsListItemClickObserve(value)
-            }
-        })
+        mMainViewModel.mAttractionsListItemClickLiveData.observe(viewLifecycleOwner){
+            onAttractionsListItemClickObserve(it)
+        }
 
     }
 
     // MARK: - ========================== Data
     /** DataBinding */
-    lateinit var mAttractionsListFragmentBinding: FragmentAttractionsListBinding
+    private lateinit var mAttractionsListFragmentBinding: FragmentAttractionsListBinding
     /** ViewModel */
-    val mMainViewModel: MainViewModel by lazy {
+    private val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
     /** AttractionsListAdapter */
-    lateinit var mAttractionsListAdapter : AttractionsListAdapter
+    private lateinit var mAttractionsListAdapter : AttractionsListAdapter
     // MARK: - ========================== Event
     /** 點擊 景點列表 的 任一 itemView */
-    val mOnListItemClick : IOnOptionListener<AttractionsBean> = object :
+    private val mOnListItemClick : IOnOptionListener<AttractionsBean> = object :
         IOnOptionListener<AttractionsBean> {
         override fun onExecute(option: AttractionsBean?) {
             mMainViewModel.onAttractionsListItemClick(option!!)
@@ -77,19 +73,19 @@ class AttractionsListFragment: CIFragment(R.layout.fragment_attractions_list) {
 
     }
     /** 點擊 景點列表 的 收藏 */
-    val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :IOnOptionCheckedChangedListener<AttractionsBean> {
+    private val mOnCheckedChangeListener : IOnOptionCheckedChangedListener<AttractionsBean> = object :IOnOptionCheckedChangedListener<AttractionsBean> {
         override fun onExecute(option: AttractionsBean, isChecked: Boolean) {
             mMainViewModel.onAttractionsListFavoriteCheckedChangeListener(option,isChecked)
         }
     }
     // MARK:- ========================== Observe
     /** 觀察 景點列表資料 發生變化 */
-    fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
+    private fun onAttractionsBeanListObserve(value: List<AttractionsBean>){
         mAttractionsListAdapter.submitList(value)
     }
 
     /** 觀察 當點擊 景點列表的item */
-    fun onAttractionsListItemClickObserve(value: AttractionsBean){
+    private fun onAttractionsListItemClickObserve(value: AttractionsBean){
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){

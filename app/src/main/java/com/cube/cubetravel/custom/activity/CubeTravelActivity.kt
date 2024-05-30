@@ -31,6 +31,38 @@ abstract class CubeTravelActivity<T>: CIActivity<T>() {
 
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+
+        //====================== Event
+        //onToolbarBackClick
+        mToolbar?.mBackImageView?.setOnClickListener {
+            onToolbarBackClick()
+        }
+        //====================== Observe
+        //onMsgLiveDataChanged
+        mBaseViewModel().mMsgLiveData.observe(this) {
+            onMsgLiveDataChanged(it)
+        }
+        //onIsLoadingLiveDataChanged
+        mBaseViewModel().mIsLoadingLiveData.observe(this) {
+            onIsLoadingLiveDataChanged(it)
+        }
+    }
+    // MARK:- ========================== View
+    /** toolbar */
+    private val mToolbar : CIToolbar? by lazy {
+        findViewById(R.id.toolbar)
+    }
+
+    // MARK:- ========================== Data
+    abstract fun mBaseViewModel(): BaseViewModel
+    /** xml中 最外圍的那層layout */
+    override fun getSupperLayout(): FrameLayout {
+        return findViewById(R.id.layout_main)
+    }
+    // MARK:- ========================== Event
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
@@ -67,40 +99,6 @@ abstract class CubeTravelActivity<T>: CIActivity<T>() {
         }
 
     }
-
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-
-        //====================== Event
-        //onToolbarBackClick
-        mToolbar?.mBackImageView?.setOnClickListener {
-            onToolbarBackClick()
-        }
-        //====================== Observe
-        //onMsgLiveDataChanged
-        mBaseViewModel().mMsgLiveData.observe(this) {
-            onMsgLiveDataChanged(it)
-        }
-        //onIsLoadingLiveDataChanged
-        mBaseViewModel().mIsLoadingLiveData.observe(this) {
-            onIsLoadingLiveDataChanged(it)
-        }
-    }
-    // MARK:- ========================== View
-    /** toolbar */
-    private val mToolbar : CIToolbar? by lazy {
-        findViewById(R.id.toolbar)
-    }
-
-    // MARK:- ========================== Data
-    abstract fun mBaseViewModel(): BaseViewModel
-    /** xml中 最外圍的那層layout */
-    override fun getSupperLayout(): FrameLayout {
-        return findViewById(R.id.layout_main)
-    }
-    // MARK:- ========================== Event
     /** 當點擊 toolbar的back */
     private fun onToolbarBackClick(){
         finish()

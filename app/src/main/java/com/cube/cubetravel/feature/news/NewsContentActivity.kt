@@ -64,12 +64,12 @@ class NewsContentActivity : CubeTravelActivity<NewsBean>() {
         ActivityNewsContentBinding.inflate(layoutInflater)
     }
     /** ViewModel */
-    val mNewsContentViewModel: NewsContentViewModel by lazy {
+    private val mNewsContentViewModel: NewsContentViewModel by lazy {
         ViewModelProvider(this, NewsContentViewModelFactory(getIntentData(NewsBean::class.java)))[NewsContentViewModel::class.java]
     }
     // MARK:- ========================== Observe
     /** 觀察 當點擊 前往網頁 */
-    fun onGoToWebClickChanged(webBean: WebBean){
+    private fun onGoToWebClickChanged(webBean: WebBean){
 
         WebActivity.startActivity(this,webBean)
     }

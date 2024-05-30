@@ -61,16 +61,16 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
 
     // MARK: - ========================== Data
     /** DataBinding */
-    lateinit var mFragmentNewsListBinding: FragmentNewsListBinding
+    private lateinit var mFragmentNewsListBinding: FragmentNewsListBinding
     /** ViewModel */
-    val mMainViewModel: MainViewModel by lazy {
+    private val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
     /** NewsListAdapter */
-    lateinit var mNewsListAdapter : NewsListAdapter
+    private lateinit var mNewsListAdapter : NewsListAdapter
     // MARK: - ========================== Event
     /** 點擊 最新消息列表 的 任一 itemView */
-    val mOnListItemClick : IOnOptionListener<NewsBean> = object :
+    private val mOnListItemClick : IOnOptionListener<NewsBean> = object :
         IOnOptionListener<NewsBean> {
         override fun onExecute(option: NewsBean?) {
             mMainViewModel.onNewsListItemClick(option!!)
@@ -79,12 +79,12 @@ class NewsListFragment: CIFragment(R.layout.fragment_news_list) {
     }
     // MARK:- ========================== Observe
     /** 觀察 最新消息列表資料 發生變化 */
-    fun onNewsBeanListObserve(value: List<NewsBean>){
+    private fun onNewsBeanListObserve(value: List<NewsBean>){
         mNewsListAdapter.submitList(value)
     }
 
     /** 觀察 當點擊 最新消息列表的item */
-    fun onNewsListItemClickObserve(value: NewsBean){
+    private fun onNewsListItemClickObserve(value: NewsBean){
         val activity = getMyActivity()
         if (activity != null){
             if (activity is CubeTravelActivity<*>){

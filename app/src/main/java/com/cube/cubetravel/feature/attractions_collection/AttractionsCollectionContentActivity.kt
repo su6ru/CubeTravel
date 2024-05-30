@@ -66,12 +66,12 @@ class AttractionsCollectionContentActivity : CubeTravelActivity<AttractionsColle
         ActivityAttractionsCollectionContentBinding.inflate(layoutInflater)
     }
     /** ViewModel */
-    val mAttractionsCollectionContentViewModel: AttractionsCollectionContentViewModel by lazy {
+    private val mAttractionsCollectionContentViewModel: AttractionsCollectionContentViewModel by lazy {
         ViewModelProvider(this, AttractionsCollectionContentViewModelFactory(getIntentData(AttractionsCollectionBean::class.java)))[AttractionsCollectionContentViewModel::class.java]
     }
     // MARK:- ========================== Observe
     /** 圖片 Banner資料變動觀察,如果有變動就更新view  */
-    fun onImageBannerBeanListChanged(bannerBeans: List<ImageBannerBean>) {
+    private fun onImageBannerBeanListChanged(bannerBeans: List<ImageBannerBean>) {
         if (bannerBeans.isEmpty()){
             mActivityAttractionsCollectionContentBinding.bannerImage.visibility = View.GONE
         }else{
@@ -82,11 +82,11 @@ class AttractionsCollectionContentActivity : CubeTravelActivity<AttractionsColle
         }
     }
     /** 觀察 當點擊 導航 */
-    fun onMapClickChanged(address: String){
+    private fun onMapClickChanged(address: String){
         CIIntentUtil.openGoogleMapToLocation(this, address,0.0,0.0)
     }
     /** 觀察 當點擊 前往網頁 */
-    fun onGoToWebClickChanged(webBean: WebBean){
+    private fun onGoToWebClickChanged(webBean: WebBean){
 
         WebActivity.startActivity(this,webBean)
     }

@@ -65,14 +65,14 @@ class LanguageListActivity : CubeTravelActivity<NewsBean>() {
         ActivityLanguageListBinding.inflate(layoutInflater)
     }
     /** ViewModel */
-    val mLanguageListViewModel: LanguageListViewModel by lazy {
+    private val mLanguageListViewModel: LanguageListViewModel by lazy {
         ViewModelProvider(this, LanguageListViewModelFactory(CubeTravelApplication.INSTANCE))[LanguageListViewModel::class.java]
     }
     /** LanguageListAdapter */
-    lateinit var mLanguageListAdapter : LanguageListAdapter
+    private lateinit var mLanguageListAdapter : LanguageListAdapter
     // MARK: - ========================== Event
     /** 點擊 語言列表 的 任一 itemView */
-    val mOnLanguageListItemClick : IOnOptionListener<LanguageBean> = object :
+    private val mOnLanguageListItemClick : IOnOptionListener<LanguageBean> = object :
         IOnOptionListener<LanguageBean> {
         override fun onExecute(option: LanguageBean?) {
             mLanguageListViewModel.onLanguageListItemClick(option!!)
@@ -81,12 +81,12 @@ class LanguageListActivity : CubeTravelActivity<NewsBean>() {
     }
     // MARK:- ========================== Observe
     /** 觀察 語言列表資料 發生變化 */
-    fun onLanguageBeanListObserve(value: List<LanguageBean>){
+    private fun onLanguageBeanListObserve(value: List<LanguageBean>){
         mLanguageListAdapter.submitList(value)
     }
 
     /** 觀察 當點擊 語言列表的item */
-    fun onLanguageListItemClickObserve(value: LanguageBean){
+    private fun onLanguageListItemClickObserve(value: LanguageBean){
         CubeTravelApplication.INSTANCE.mAppManager.mLanguageBean = value
         setResult(RESULT_OK)
         finish()

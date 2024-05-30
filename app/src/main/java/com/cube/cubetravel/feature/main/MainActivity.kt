@@ -83,19 +83,19 @@ class MainActivity : CubeTravelActivity<Void>() {
 
     // MARK:- ========================== View
     /** 景點 列表 Fragment */
-    val mAttractionsListFragment by lazy {
+    private val mAttractionsListFragment by lazy {
         AttractionsListFragment()
     }
     /** 最新消息 列表 Fragment */
-    val mNewsListFragment by lazy {
+    private val mNewsListFragment by lazy {
         NewsListFragment()
     }
     /** 景點收藏 列表 Fragment */
-    val mAttractionsCollectionListFragment by lazy {
+    private val mAttractionsCollectionListFragment by lazy {
         AttractionsCollectionListFragment()
     }
     /** 設定 Fragment */
-    val mSettingFragment by lazy {
+    private val mSettingFragment by lazy {
         SettingFragment()
     }
     // MARK:- ========================== Data
@@ -104,7 +104,7 @@ class MainActivity : CubeTravelActivity<Void>() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     /** ViewModel */
-    val mMainViewModel: MainViewModel by lazy {
+    private val mMainViewModel: MainViewModel by lazy {
         ViewModelProvider(this, MainViewModelFactory(application))[MainViewModel::class.java]
     }
     // MARK:- ========================== Observe

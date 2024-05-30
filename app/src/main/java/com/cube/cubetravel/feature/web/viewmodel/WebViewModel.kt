@@ -1,5 +1,9 @@
 package com.cube.cubetravel.feature.web.viewmodel
 
+import android.graphics.Bitmap
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
 import android.widget.CompoundButton
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -30,6 +34,16 @@ class WebViewModel(private val webRepository: WebRepository): BaseViewModel(),De
     val mWebBeanLiveData = MutableLiveData<WebBean>()
 
     // MARK:- ========================== Event
+    fun onWebViewPageStartedListener(){
+        mIsLoadingLiveData.value = true
+    }
+    fun onWebViewFinishedListener(){
+        mIsLoadingLiveData.value = false
+
+    }
+    fun onWebViewErrorListener(){
+        mIsLoadingLiveData.value = true
+    }
 
     // MARK:- ========================== Method
 
